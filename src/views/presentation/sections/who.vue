@@ -58,6 +58,7 @@
 
             <div class="relative w-full h-full">
                 <div class="mx-auto max-w-7xl">
+<<<<<<< HEAD
                     <div class="relative z-10 pt-14 lg:w-full lg:max-w-2xl lg:h-screen">
 
 
@@ -69,6 +70,17 @@
                         <div class="relative px-6 pt-24 lg:h-full lg:px-8 lg:pr-0">
                             <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
                                 <!-- <div class="hidden sm:mb-10 sm:flex">
+=======
+                    <div class="relative z-10 pt-14 lg:w-full lg:max-w-2xl">
+                        <svg class="landing-diagonal-section absolute inset-y-0 right-8 hidden h-screen w-80 translate-x-1/2 transform lg:block"
+                            viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+                            <polygon points="0,0 90,0 50,100 0,100" />
+                        </svg>
+
+                        <div class="relative py-32 px-6 sm:py-40 lg:py-56 lg:px-8 lg:pr-0">
+                            <div class="mx-auto max-w-2xl lg:mx-0 lg:max-w-xl">
+                                <div class="hidden sm:mb-10 sm:flex">
+>>>>>>> ff0feb973d85e3e60524c9e9c4da834d49fab3d3
                                     <div
                                         class="landing-top-link relative rounded-full py-1 px-3 text-sm leading-6 text-color-2">
                                         Anim aute id magna aliqua ad ad non deserunt sunt. <a href="#"
@@ -76,6 +88,7 @@
                                                 class="absolute inset-0" aria-hidden="true" />Read more <span
                                                 aria-hidden="true">&rarr;</span></a>
                                     </div>
+<<<<<<< HEAD
                                 </div> -->
 
                                 <div class="flex justify-center pb-16">
@@ -96,12 +109,25 @@
                                     unique and visually striking artworks. <br> When not creating, I enjoy hiking and
                                     exploring new landscapes.</p>
                                 <!-- <div class="mt-6 flex items-center gap-x-6">
+=======
+                                </div>
+                                <h1 class="text-4xl font-bold tracking-tight text-color-1 sm:text-6xl leading-6 landing-main-title">
+                                    Hi, I'm Giorgia<br />from Sottomarina</h1>
+                                <p class="mt-6 text-lg leading-8 text-color-2">Anim aute id magna aliqua ad ad non
+                                    deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam
+                                    occaecat fugiat aliqua.</p>
+                                <div class="mt-10 flex items-center gap-x-6">
+>>>>>>> ff0feb973d85e3e60524c9e9c4da834d49fab3d3
                                     <a href="#"
                                         class="landing-main-button rounded-md px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Get
                                         started</a>
                                     <a href="#" class="text-sm font-semibold leading-6 text-color-1">Learn more <span
                                             aria-hidden="true">→</span></a>
+<<<<<<< HEAD
                                 </div> -->
+=======
+                                </div>
+>>>>>>> ff0feb973d85e3e60524c9e9c4da834d49fab3d3
                             </div>
                         </div>
                     </div>
@@ -122,8 +148,11 @@
 import { ref } from 'vue'
 import { Dialog, DialogPanel } from '@headlessui/vue'
 import { Bars3Icon, XMarkIcon } from '@heroicons/vue/24/outline'
+<<<<<<< HEAD
 import BrandIcon from '@/components/icons/BrandIcon.vue';
 import BrandIconNew from '@/components/icons/BrandIconNew.vue';
+=======
+>>>>>>> ff0feb973d85e3e60524c9e9c4da834d49fab3d3
 
 const navigation = [
     { name: 'Product', href: '#' },
@@ -137,11 +166,17 @@ const mobileMenuOpen = ref(false)
 
 </script>
 
+<<<<<<< HEAD
 <style lang="scss">
+=======
+<style scoped lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
+>>>>>>> ff0feb973d85e3e60524c9e9c4da834d49fab3d3
 
 // #0b2224 #091314
 $landing-main-color: #091314;
 
+<<<<<<< HEAD
 
 .landing-main-title {
     font-family: 'Cormorant Garamond', serif;
@@ -156,6 +191,14 @@ $landing-main-color: #091314;
     font-family: 'Cormorant Garamond', serif;
     font-weight: 300;
     font-size: 20px;
+=======
+.landing-main-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: 90px;
+    padding-bottom: 30px;
+    line-height: 5.8rem;
+>>>>>>> ff0feb973d85e3e60524c9e9c4da834d49fab3d3
 }
 
 .text-color-1 {

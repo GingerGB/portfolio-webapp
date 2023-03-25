@@ -1,11 +1,16 @@
 <template>
     <div class="relative">
 
+<<<<<<< HEAD
         <div class="bg-white py-24 sm:py-32 ">
             <div class="py-20" />
             <div class="py-20" />
             <div class="py-20" />
             <!-- <div class="mx-auto max-w-7xl px-6 lg:px-8">
+=======
+        <div class="bg-white py-24 sm:py-32">
+            <div class="mx-auto max-w-7xl px-6 lg:px-8">
+>>>>>>> ff0feb973d85e3e60524c9e9c4da834d49fab3d3
                 <div
                     class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
                     <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Stay on top of customer support
@@ -22,7 +27,11 @@
                         </div>
                     </dl>
                 </div>
+<<<<<<< HEAD
             </div> -->
+=======
+            </div>
+>>>>>>> ff0feb973d85e3e60524c9e9c4da834d49fab3d3
         </div>
 
     </div>
