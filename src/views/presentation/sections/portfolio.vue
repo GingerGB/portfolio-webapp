@@ -17,44 +17,21 @@
         <div class="bg-green_giorgia-50 w-full flex flex-col pt-20">
 
             <div class="mx-auto max-w-7xl lg:px-8 space-y-10">
-                <div v-for="(s, i) in sections" :key="i"
-                    class="flex flex-col w-full lg:border border-green_giorgia-200 relative overflow-hiddena">
-                    <div class="flex flex-col lg:flex-row items-center w-full p-8">
-                        <!-- IMAGE EVEN -->
-                        <div v-if="(i & 1) && !themesStore.isMD && !themesStore.isSM"
-                            class="flex flex-shrink-0 -ml-8 pr-16">
-                            <div class="bg-green_giorgia-100 pr-10 pt-10 relative">
-                                <div class="flex justify-end space-x-3 pb-5 pt-5 border-t border-purple_giorgia-400">
-                                    <div v-for="(p, iP) in s.programs" class="">
-                                        <img :src="`/src/assets/images/programs/${p.image}.svg`" class="w-6 h-8"
-                                            v-fbr-tooltip="p.description" />
-                                    </div>
-                                </div>
-                                <div class="relative">
-                                    <div v-if="s.image === 'goat_island.png'"
-                                        class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
-                                    <img :src="`/src/assets/images/portfolio/${s.image}`"
-                                        class="bg-purple_giorgia-500 w-full object-cover" :class="s.imageClasses"
-                                        :style="s.imageStyles" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex flex-col flex-grow">
-                            <!-- TITLE -->
-                            <div class="text-purple_giorgia-700 font-serif font-semibold text-5xl pb-4 lg:pb-10">
-                                {{ s.title }}
-                            </div>
-                            <div class="flex flex-wrap items-center space-x-2 lg:pb-6">
-                                <div v-for="t in s.tags" :key="t"
-                                    class="bg-green_giorgia-200 text-green_giorgia-700 font-medium text-xs tracking-wider uppercase px-3 py-2 mt-2 lg:mt-0">
-                                    {{ t }}
-                                </div>
-                            </div>
 
-                            <div v-if="themesStore.isMD || themesStore.isSM"
-                                class="flex flex-shrink-0 mt-4 mb-10 mx-auto">
-                                <div class="relative">
-                                    <div class="flex space-x-3 pb-5 pt-5 border-t border-purple_giorgia-400">
+                <div v-for="(c, iC) in categories" :key="iC" class="pt-4 pb-10 lg:pb-20 w-full">
+                    <div class="flex pb-2 xl:pb-10 w-full lg:justify-end px-4 lg:px-0">
+                        <div class="font-serif text-4xl lg:text-7xl font-bold tracking-widest uppercase text-purple_giorgia-300 pr-4">{{ (iC+1) }}</div>
+                        <div class="font-serif text-4xl lg:text-7xl font-bold tracking-widest uppercase text-green_giorgia-400">{{ c.description }}</div>
+                    </div>
+
+                    <div v-for="(s, i) in sections.filter(s => s.category == c.id)" :key="i"
+                        class="flex flex-col w-full lg:border border-green_giorgia-200 relative overflow-hiddena">
+                        <div class="flex flex-col lg:flex-row items-center w-full py-8 px-4 lg:px-8">
+                            <!-- IMAGE EVEN -->
+                            <div v-if="(i & 1) && !themesStore.isMD && !themesStore.isSM"
+                                class="flex flex-shrink-0 -ml-8 pr-16">
+                                <div class="bg-green_giorgia-100 pr-10 pt-10 relative">
+                                    <div class="flex justify-end space-x-3 pb-5 pt-5 border-t border-purple_giorgia-400">
                                         <div v-for="(p, iP) in s.programs" class="">
                                             <img :src="`/src/assets/images/programs/${p.image}.svg`" class="w-6 h-8"
                                                 v-fbr-tooltip="p.description" />
@@ -69,37 +46,69 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- DESCRIPTION -->
-                            <div v-html="s.description" class="text-green_giorgia-700 font-light text-lg"></div>
-                            <!-- BUTTON -->
-                            <div class="mt-8 flex items-center gap-x-6">
-                                <a href="#"
-                                    class="w-full lg:w-auto text-center lg:text-left transition-colors duration-150 ease-in-out bg-purple_giorgia-600 hover:bg-purple_giorgia-700
-                                                                              px-6 py-5 lg:py-3 text-sm font-semibold text-purple_giorgia-50 shadow-sm">Visualizza
-                                    progetto</a>
-                            </div>
-                        </div>
-                        <!-- IMAGE ODD -->
-                        <div v-if="!(i & 1) && !themesStore.isMD && !themesStore.isSM"
-                            class="flex flex-shrink-0 -mr-8 pl-16">
-                            <div class="bg-green_giorgia-100 pl-10 pt-10 relative">
-                                <div class="flex space-x-3 pb-5 pt-5 border-t border-purple_giorgia-400">
-                                    <div v-for="(p, iP) in s.programs" class="">
-                                        <img :src="`/src/assets/images/programs/${p.image}.svg`" class="w-6 h-6"
-                                            v-fbr-tooltip="p.description" />
+                            <div class="flex flex-col flex-grow">
+                                <!-- TITLE -->
+                                <div class="text-purple_giorgia-700 font-serif font-semibold text-4xl lg:text-5xl pb-4 lg:pb-10">
+                                    {{ s.title }}
+                                </div>
+                                <div class="flex flex-wrap items-center space-x-2 lg:pb-6">
+                                    <div v-for="t in s.tags" :key="t"
+                                        class="bg-green_giorgia-200 text-green_giorgia-700 font-medium text-xs tracking-wider uppercase px-3 py-2 mt-2 lg:mt-0">
+                                        {{ t }}
                                     </div>
                                 </div>
-                                <div class="relative">
-                                    <div v-if="s.image === 'goat_island.png'"
-                                        class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
-                                    <img :src="`/src/assets/images/portfolio/${s.image}`"
-                                        class="bg-purple_giorgia-500 w-full object-cover" :class="s.imageClasses"
-                                        :style="s.imageStyles" />
+
+                                <div v-if="themesStore.isMD || themesStore.isSM"
+                                    class="flex flex-shrink-0 mt-4 mb-10 mx-auto">
+                                    <div class="relative">
+                                        <div class="flex space-x-3 pb-5 pt-5 border-t border-purple_giorgia-400">
+                                            <div v-for="(p, iP) in s.programs" class="">
+                                                <img :src="`/src/assets/images/programs/${p.image}.svg`" class="w-6 h-8"
+                                                    v-fbr-tooltip="p.description" />
+                                            </div>
+                                        </div>
+                                        <div class="relative">
+                                            <div v-if="s.image === 'goat_island.png'"
+                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
+                                            <img :src="`/src/assets/images/portfolio/${s.image}`"
+                                                class="bg-purple_giorgia-500 w-full object-cover" :class="s.imageClasses"
+                                                :style="s.imageStyles" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- DESCRIPTION -->
+                                <div v-html="s.description" class="text-green_giorgia-700 font-light text-lg"></div>
+                                <!-- BUTTON -->
+                                <div class="mt-8 flex items-center gap-x-6">
+                                    <a href="#"
+                                        class="w-full lg:w-auto text-center lg:text-left transition-colors duration-150 ease-in-out bg-purple_giorgia-600 hover:bg-purple_giorgia-700
+                                                                                          px-6 py-5 lg:py-3 text-sm font-semibold text-purple_giorgia-50 shadow-sm">Visualizza
+                                        progetto</a>
+                                </div>
+                            </div>
+                            <!-- IMAGE ODD -->
+                            <div v-if="!(i & 1) && !themesStore.isMD && !themesStore.isSM"
+                                class="flex flex-shrink-0 -mr-8 pl-16">
+                                <div class="bg-green_giorgia-100 pl-10 pt-10 relative">
+                                    <div class="flex space-x-3 pb-5 pt-5 border-t border-purple_giorgia-400">
+                                        <div v-for="(p, iP) in s.programs" class="">
+                                            <img :src="`/src/assets/images/programs/${p.image}.svg`" class="w-6 h-6"
+                                                v-fbr-tooltip="p.description" />
+                                        </div>
+                                    </div>
+                                    <div class="relative">
+                                        <div v-if="s.image === 'goat_island.png'"
+                                            class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
+                                        <img :src="`/src/assets/images/portfolio/${s.image}`"
+                                            class="bg-purple_giorgia-500 w-full object-cover" :class="s.imageClasses"
+                                            :style="s.imageStyles" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="py-32" />
@@ -120,6 +129,7 @@ import { useThemes } from '@/store';
 
 export type PortfolioSection = {
     title: string;
+    category: "set_design" | "photography";
     description: string;
     tags: string[];
     programs: { image: string; description: string }[];
@@ -144,22 +154,28 @@ materiali e delle palette colore.`;
 const curseDescription = `Ipotesi di ricostruzione set per riproporre la fotografia “The Curse of Nanny Goat Island” del fotografo inglese Matt Henry. Nel progetto sono
 analizzate piante e prospetti, tutti i dettagli costruttivi degli oggetti di scena, compresi di studio dei materiali e delle palette colore.`;
 
+const categories: { id: string; description: string }[] = [{ id: "set_design", description: "Set design" }, { id: "photography", description: "Fotografia" }];
+
 const sections: PortfolioSection[] = [{
-    title: "Come sangue nella neve", description: comeSangueDescription, tags: ["scenografia", "progetto tecnico", "fotomanipolazione"],
+    title: "Come sangue nella neve", category: "set_design", description: comeSangueDescription, tags: ["scenografia", "progetto tecnico", "fotomanipolazione"],
     programs: [{ image: "autocad", description: "AutoCAD" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }, { image: "indesign", description: "InDesign" }],
     image: "sangue_1.jpg", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;"
 }, {
-    title: "Oltre le porte di Magickland", description: magicklandDescription, tags: ["scenografia", "scenotecnica", "fotomanipolazione"],
+    title: "Oltre le porte di Magickland", category: "set_design", description: magicklandDescription, tags: ["scenografia", "scenotecnica", "fotomanipolazione"],
     programs: [{ image: "autocad", description: "AutoCAD" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }],
     image: "magickland.jpg", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;"
 }, {
-    title: "Ulisse", description: ulisseDescription, tags: ["scenografia", "modellazione 3d"],
+    title: "Ulisse", category: "set_design", description: ulisseDescription, tags: ["scenografia", "modellazione 3d"],
     programs: [{ image: "autocad", description: "AutoCAD" }, { image: "3dsmax", description: "3ds Max" }, { image: "maya", description: "Maya" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }],
     image: "ulisse.jpg", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;"
 }, {
-    title: "The Curse of Nanny Goat Island ", description: curseDescription, tags: ["scenografia", "disegno progettuale"],
+    title: "The Curse of Nanny Goat Island", category: "set_design", description: curseDescription, tags: ["scenografia", "disegno progettuale"],
     programs: [{ image: "autocad", description: "AutoCAD" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }],
     image: "goat_island.png", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
+}, {
+    title: "Shooting Daniela e Kevin", category: "photography", description: "Esempio di shooting fotografico in esterna", tags: ["fotografia", "foto editing"],
+    programs: [{ image: "photoshop", description: "Photoshop" }],
+    image: "daniela_kevin.jpg", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
 }];
 
 </script>
@@ -204,4 +220,5 @@ const sections: PortfolioSection[] = [{
 // }
 // .portfolio-section-bottom {
 //     bottom: -60px;
-// }</style>
+// }
+</style>
