@@ -52,8 +52,8 @@
                         <!-- BUTTON -->
                         <div class="mt-8 flex items-center gap-x-6">
                             <a href="#"
-                                class="transition-colors duration-150 ease-in-out bg-purple_giorgia-600 hover:bg-purple_giorgia-700
-                                                                              px-6 py-3 text-sm font-semibold text-purple_giorgia-50 shadow-sm">Scarica
+                                class="w-full lg:w-auto text-center lg:text-left transition-colors duration-150 ease-in-out bg-purple_giorgia-600 hover:bg-purple_giorgia-700
+                                                                              px-6 py-5 lg:py-3 text-sm font-semibold text-purple_giorgia-50 shadow-sm">Scarica
                                 CV</a>
                         </div>
                     </figure>

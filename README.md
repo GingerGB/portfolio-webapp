@@ -3,7 +3,7 @@ My personal website with portfolio
 
 
 COMANDI
-    ctrl + k + c = commentare o scommentare codice
+    ctrl + k + c / ctrl + k + u = commentare o scommentare codice
     salvare con ctrl + s se puntino bianco sulla tab per fare hot reload e vedere modifiche sulla pagina
     alt + shift + f = auto formattare codice
 
