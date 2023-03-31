@@ -174,7 +174,7 @@ const sections: PortfolioSection[] = [{
     image: "goat_island.png", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
 }, {
     title: "Shooting Daniela e Kevin", category: "photography", description: "Esempio di shooting fotografico in esterna", tags: ["fotografia", "foto editing"],
-    programs: [{ image: "photoshop", description: "Photoshop" }],
+    programs: [{ image: "photoshop", description: "Photoshop" }, { image: "lightroom", description: "Lightroom" }],
     image: "daniela_kevin.jpg", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
 }];
 
