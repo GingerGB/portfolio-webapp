@@ -38,14 +38,14 @@
 
                         <!-- TEXT -->
                         <blockquote class="text-base leading-7 xl:text-lg xl:leading-8 font-light text-green_giorgia-800">
-                            <p>Formata in scenografia, fotografia, photo e video editing, adoro apprendere nuove tecniche,
-                                per provare a dare vita agli eccentrici pensieri che abitano la mia mente. Quando non creo
-                                con l'ausilio della tecnologia, riempio pagine d'inchiostro.
-                                Sono una persona curiosa e sempre in cerca di nuove esperienze.
-                                Mi piace viaggiare, conoscere nuove culture e nuove persone.
-                                Sono una persona molto positiva e mi piace essere sempre in movimento.
-                                Sono una persona molto curiosa e sempre in cerca di nuove esperienze.
-                                Mi piace viaggiare, conoscere nuove culture e nuove persone.
+                            <p>Dopo aver frequentato i primi tre anni della magistrale a ciclo unico Ingegneria Edile - Architettura presso l’Università di Padova,
+                                perseguendo i miei grandi amori per cinema e fotografia cambio rotta e mi avvicino al mondo dell’arte prima con il triennio di
+                                Cinema, fotografia e televisione presso l’Accademia di Belle Arti di Bologna e poi, anche per recuperare le capacità progettuali
+                                acquisite nel primo Corso di Studi, continuo con il biennio magistrale di Scenografia per il cinema e la televisione presso
+                                l’Accademia di Belle Arti di Brera, in cui mi laureo a pieni voti assoluti con una tesi sull’estetica del dolore.
+                                Sono una persona molto curiosa, poliedrica e dinamica, sempre pronta ad imparare cose nuove e a mettermi alla prova.
+                                Metto la passione in tutto quello che faccio e mi adatto bene al lavoro in team, come ho potuto più volte sperimentare
+                                durante il mio percorso accademico e le mie esperienze lavorative ed extracurriculari.
                             </p>
                         </blockquote>
 

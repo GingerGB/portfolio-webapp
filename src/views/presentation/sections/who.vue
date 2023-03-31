@@ -78,10 +78,15 @@
                                 </h1>
 
                                 <!-- PARAGRAPH -->
-                                <p class="text-2xl md:text-xl leading-8 text-color-2 text-green_giorgia-300 font-serif font-light"> Formata in scenografia, fotografia,
+                                <p class="text-2xl md:text-xl leading-8 text-color-2 text-green_giorgia-300 font-serif font-light">
+                                    Formata in scenografia, fotografia, photo e video editing.
+                                    La mia mente è una fucina di idee a cui cerco di dare forma plasmando gli eccentrici pensieri che la abitano.
+                                    Quando non creo con l'ausilio della tecnologia, riempio pagine d'inchiostro.
+
+                                    <!-- Formata in scenografia, fotografia,
                                     photo e video editing, adoro apprendere nuove tecniche, per provare a dare vita agli
                                     eccentrici pensieri che abitano la mia mente.
-                                    Quando non creo con l'ausilio della tecnologia, riempio pagine d'inchiostro.
+                                    Quando non creo con l'ausilio della tecnologia, riempio pagine d'inchiostro. -->
                                     <!-- unisco questi mezzi per creare opere d'arte uniche e di grande impatto visivo. -->
                                 </p>
                             </div>
