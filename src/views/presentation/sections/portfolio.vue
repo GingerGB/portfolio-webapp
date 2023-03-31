@@ -165,7 +165,7 @@ const sections: PortfolioSection[] = [{
     programs: [{ image: "autocad", description: "AutoCAD" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }],
     image: "magickland.jpg", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;"
 }, {
-    title: "Ulisse", category: "set_design", description: ulisseDescription, tags: ["scenografia", "modellazione 3d"],
+    title: "Ulisse", category: "set_design", description: ulisseDescription, tags: ["scenografia", "modellazione 3d", "illuminotecnica"],
     programs: [{ image: "autocad", description: "AutoCAD" }, { image: "3dsmax", description: "3ds Max" }, { image: "maya", description: "Maya" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }],
     image: "ulisse.jpg", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;"
 }, {
