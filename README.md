@@ -9,6 +9,8 @@ COMANDI
 
     tutti dopo aver fatto right-click dalla cartella --> apri da terminale
 
+    per installare o aggiornare dipendenze/pacchetti
+        npm i
     per aprire il progetto
         npm run dev
     per rilasciare modifiche

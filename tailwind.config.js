@@ -23,6 +23,7 @@ module.exports = {
             emerald: colors.emerald,
             indigo: colors.indigo,
             yellow: colors.yellow,
+            transparent: 'transparent',
             green_giorgia: {
                 50: "#D0E1DC",
                 100: "#C1D7D0",
@@ -48,5 +49,10 @@ module.exports = {
                 900: "#1A1319",
             },
         },
+        extend: {
+            gradientColorStopPositions: {
+                62: '62%',
+            }
+        }
     },
 };

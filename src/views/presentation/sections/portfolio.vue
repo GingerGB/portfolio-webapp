@@ -13,20 +13,26 @@
             </div>
         </div>
 
-
-        <div class="bg-green_giorgia-50 w-full flex flex-col pt-20">
+        <div class="bg-green_giorgia-50 w-full flex flex-col pt-20 lg:pt-36">
 
             <div class="mx-auto max-w-7xl lg:px-8 space-y-10">
 
+                <!-- CATEGORY LIST -->
                 <div v-for="(c, iC) in categories" :key="iC" class="pt-4 pb-10 lg:pb-20 w-full">
-                    <div class="flex pb-2 xl:pb-10 w-full lg:justify-end px-4 lg:px-0">
-                        <div class="font-serif text-4xl lg:text-7xl font-bold tracking-widest uppercase text-purple_giorgia-300 pr-4">{{ (iC+1) }}</div>
-                        <div class="font-serif text-4xl lg:text-7xl font-bold tracking-widest uppercase text-green_giorgia-400">{{ c.description }}</div>
+                    <div class="flex pb-2 lg:pb-0 w-full lg:justify-end px-4 lg:px-0 lg:-mb-9">
+                        <div
+                            class="font-serif text-4xl lg:text-8xl font-bold tracking-widest uppercase pr-4 text-purple_giorgia-600 lg:bg-gradient-to-b lg:from-62 lg:to-62 lg:from-purple_giorgia-500 lg:to-purple_giorgia-300 lg:bg-clip-text lg:text-transparent">
+                            {{ (iC + 1) }}</div>
+                            <!-- text-green_giorgia-400 -->
+                            <!-- bg-clip-text text-transparent -->
+                        <div class="font-serif text-4xl lg:text-8xl font-bold tracking-widest uppercase text-green_giorgia-600 lg:bg-gradient-to-b lg:from-62 lg:to-62 lg:from-green_giorgia-500 lg:to-green_giorgia-300 lg:bg-clip-text lg:text-transparent">
+                            {{ c.description }}</div>
                     </div>
 
+                    <!-- SECTION LIST -->
                     <div v-for="(s, i) in sections.filter(s => s.category == c.id)" :key="i"
-                        class="flex flex-col w-full lg:border border-green_giorgia-200 relative overflow-hiddena">
-                        <div class="flex flex-col lg:flex-row items-center w-full py-8 px-4 lg:px-8">
+                        class="flex flex-col w-full lg:border border-green_giorgia-200 relative mb-16">
+                        <div class="flex flex-col lg:flex-row items-center w-full py-8 lg:pt-12 px-4 lg:px-8">
                             <!-- IMAGE EVEN -->
                             <div v-if="(i & 1) && !themesStore.isMD && !themesStore.isSM"
                                 class="flex flex-shrink-0 -ml-8 pr-16">
@@ -48,7 +54,8 @@
                             </div>
                             <div class="flex flex-col flex-grow">
                                 <!-- TITLE -->
-                                <div class="text-purple_giorgia-700 font-serif font-semibold text-4xl lg:text-5xl pb-4 lg:pb-10">
+                                <div
+                                    class="text-purple_giorgia-700 font-serif font-semibold text-4xl lg:text-5xl pb-4 lg:pb-10">
                                     {{ s.title }}
                                 </div>
                                 <div class="flex flex-wrap items-center space-x-2 lg:pb-6">
@@ -58,6 +65,7 @@
                                     </div>
                                 </div>
 
+                                <!-- IMAGE MOBILE -->
                                 <div v-if="themesStore.isMD || themesStore.isSM"
                                     class="flex flex-shrink-0 mt-4 mb-10 mx-auto">
                                     <div class="relative">
@@ -83,10 +91,11 @@
                                 <div class="mt-8 flex items-center gap-x-6">
                                     <a href="#"
                                         class="w-full lg:w-auto text-center lg:text-left transition-colors duration-150 ease-in-out bg-purple_giorgia-600 hover:bg-purple_giorgia-700
-                                                                                          px-6 py-5 lg:py-3 text-sm font-semibold text-purple_giorgia-50 shadow-sm">Visualizza
+                                                                                                              px-6 py-5 lg:py-3 text-sm font-semibold text-purple_giorgia-50 shadow-sm">Visualizza
                                         progetto</a>
                                 </div>
                             </div>
+
                             <!-- IMAGE ODD -->
                             <div v-if="!(i & 1) && !themesStore.isMD && !themesStore.isSM"
                                 class="flex flex-shrink-0 -mr-8 pl-16">
@@ -154,7 +163,7 @@ materiali e delle palette colore.`;
 const curseDescription = `Ipotesi di ricostruzione set per riproporre la fotografia “The Curse of Nanny Goat Island” del fotografo inglese Matt Henry. Nel progetto sono
 analizzate piante e prospetti, tutti i dettagli costruttivi degli oggetti di scena, compresi di studio dei materiali e delle palette colore.`;
 
-const categories: { id: string; description: string }[] = [{ id: "set_design", description: "Set design" }, { id: "photography", description: "Fotografia" }];
+const categories: { id: string; description: string }[] = [{ id: "set_design", description: "Set design" }, { id: "photography", description: "Fotografia" }, { id: "video", description: "Video" }, { id: "photoediting", description: "Photo editing" }];
 
 const sections: PortfolioSection[] = [{
     title: "Come sangue nella neve", category: "set_design", description: comeSangueDescription, tags: ["scenografia", "progetto tecnico", "fotomanipolazione"],
@@ -174,7 +183,7 @@ const sections: PortfolioSection[] = [{
     image: "goat_island.png", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
 }, {
     title: "Shooting Daniela e Kevin", category: "photography", description: "Esempio di shooting fotografico in esterna", tags: ["fotografia", "foto editing"],
-    programs: [{ image: "photoshop", description: "Photoshop" }, { image: "lightroom", description: "Lightroom" }],
+    programs: [{ image: "lightroom", description: "adasds asdas dsadas" }, { image: "photoshop", description: "Photoshop" }],
     image: "daniela_kevin.jpg", imageClasses: "h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
 }];
 
