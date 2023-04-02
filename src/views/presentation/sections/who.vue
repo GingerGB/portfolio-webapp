@@ -80,7 +80,7 @@
                                 <!-- PARAGRAPH -->
                                 <p class="text-2xl md:text-xl leading-8 text-color-2 text-green_giorgia-300 font-serif font-light">
                                     Formata in scenografia, fotografia,
-                                    photo e video editing, adoro apprendere nuove tecniche, per provare a dare vita agli
+                                    photo e video editing, adoro apprendere nuove tecniche per provare a dare vita agli
                                     eccentrici pensieri che abitano la mia mente.
                                     Quando non creo con l'ausilio della tecnologia, riempio pagine d'inchiostro.
                                 </p>

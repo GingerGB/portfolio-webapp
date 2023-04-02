@@ -7,6 +7,9 @@ module.exports = {
         "./src/**/*.{html,vue,js,ts,jsx,tsx,css,scss}",
         "./node_modules/@lebowska/**/*.{html,vue,js,ts,jsx,tsx,css,scss}",
     ],
+    plugins: [
+        require('@tailwindcss/forms'),
+    ],
     theme: {
         fontFamily: {
             serif: ["'Cormorant Garamond'", "serif"],

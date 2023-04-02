@@ -14,11 +14,7 @@
         </section>
 
         <section class="relative">
-            <what />
-        </section>
-
-        <section class="relative">
-            <points />
+            <contactMe />
         </section>
 
         <section class="relative">
@@ -30,10 +26,9 @@
 <script setup lang="ts">
 import who from './sections/who.vue';
 import aboutMe from './sections/aboutMe.vue';
-import what from './sections/what.vue';
-import points from './sections/points.vue';
-import footers from './sections/footers.vue';
 import portfolio from './sections/portfolio.vue';
+import contactMe from './sections/contactMe.vue';
+import footers from './sections/footers.vue';
 </script>
 
 <style lang="scss">
