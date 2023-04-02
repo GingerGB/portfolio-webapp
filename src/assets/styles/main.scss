@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+    -webkit-tap-highlight-color: transparent;
+}
+
 /* SVG */
 .svg-image {
     fill: none;
@@ -23,4 +27,3 @@
     color: #F3EFF2 !important;
     background-color: #4E3A4A !important;
 }
-

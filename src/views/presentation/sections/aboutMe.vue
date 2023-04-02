@@ -1,20 +1,10 @@
 <template>
-    <div class="relative mt-40 pt-12">
-        <div class="mx-auto max-w-7xl px-6 lg:px-8">
-            <!-- TITLE -->
-            <div class="relative tracking-widest font-serif text-green_giorgia-700 font-semibold text-5xl md:text-6xl">
-                <span class="z-0 absolute text-purple_giorgia-500 font-bold about-me-title-initial"
-                    style="color: #9fc1b6;">A</span>
-                <span class="z-10 relative">
-                    ABOUT ME
-                    <span class="about-me-purple-thing"></span>
-                </span>
-            </div>
-        </div>
+    <div class="relative pt-32 lg:pt-52 bg-green_giorgia-200">
+        <SectionHeader initial="A" text="About me" :spaced-bottom="false" />
         <div class="relative z-10 mt-20 pb-20 sm:pb-24 xl:pb-0">
             <div class="absolute inset-0 overflow-hidden bg-gradient-to-r from-green_giorgia-50 to-green_giorgia-100"></div>
             <div
-                class="mx-auto flex max-w-7xl flex-col items-center gap-y-10 gap-x-8 px-6 sm:gap-y-8 lg:px-8 xl:flex-row xl:items-stretch">
+                class="mx-auto flex max-w-7xl flex-col items-center gap-y-10 gap-x-8 px-4 sm:gap-y-8 lg:px-8 xl:flex-row xl:items-stretch">
 
                 <!-- IMAGE -->
                 <div class="-mt-8 w-full max-w-2xl xl:-mb-8 xl:w-96 xl:flex-none">
@@ -51,7 +41,7 @@
 
                         <!-- BUTTON -->
                         <div class="mt-8 flex items-center gap-x-6">
-                            <a href="#"
+                            <a href="https://drive.google.com/file/d/1RYirfpFwpZmVsuZXPGG-slKV7TC7zmpM/view?usp=share_link" target="_blank"
                                 class="w-full lg:w-auto text-center lg:text-left transition-colors duration-150 ease-in-out bg-purple_giorgia-600 hover:bg-purple_giorgia-700
                                                                               px-6 py-5 lg:py-3 text-sm font-semibold text-purple_giorgia-50 shadow-sm">Scarica
                                 CV</a>
@@ -65,34 +55,10 @@
 </template>
 
 <script setup lang="ts">
-
+import SectionHeader from "@/components/SectionHeader.vue";
 </script>
 
 <style lang="scss">
-// TITLE
-.about-me-purple-thing {
-    position: absolute;
-    bottom: 1px;
-    left: 7%;
-    width: 100%;
-    height: 4px;
-    @apply bg-purple_giorgia-600;
-    z-index: -1;
-}
-
-// TITLE INITIAL
-.about-me-title-initial {
-    font-size: 147px;
-    margin-top: -80px;
-}
-
-@media (min-width: 1280px) {
-    .about-me-title-initial {
-        font-size: 194px;
-        margin-top: -109px;
-    }
-}
-
 // PHOTO
 .landing-about-me-photo {
     object-position: 0 20%;
