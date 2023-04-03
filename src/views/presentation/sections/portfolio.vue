@@ -1,5 +1,14 @@
 <template>
     <div class="relative bg-green_giorgia-200 pt-32 lg:pt-52">
+
+        <!-- YOUTUBE MODAL -->
+        <GiorgiaModal :is-open="showVideoPlayer" hide-footer no-padding is-scrollable @close="showVideoPlayer = false"
+            modal-class="w-11/12 lg:w-11/12 xl:w-11/12 2xl:w-11/12">
+            <div class="w-full h-full">
+                <div id="youtubePlayer"></div>
+            </div>
+        </GiorgiaModal>
+
         <!-- <iframe
             v-if="showVideoPlayer && videoPlayerUrl"
             id="player"
@@ -24,162 +33,107 @@
             <div class="mx-auto flex max-w-7xl space-y-10 lg:px-8">
                 <div class="flex flex-grow flex-col">
                     <!-- CATEGORY LIST -->
-                    <div
-                        v-for="(c, iC) in categories"
-                        :key="iC"
-                        class="w-full pb-4 pt-4 lg:pb-20"
-                        :id="'category_' + c.id"
-                    >
+                    <div v-for="(c, iC) in categories" :key="iC" class="w-full pb-4 pt-4 lg:pb-20" :id="'category_' + c.id">
                         <div class="flex w-full px-4 pb-2 lg:-mb-9 lg:justify-end lg:px-0 lg:pb-0">
                             <div
-                                class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600 lg:bg-gradient-to-b lg:from-purple_giorgia-500 lg:from-62 lg:to-purple_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent"
-                            >
+                                class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600 lg:bg-gradient-to-b lg:from-purple_giorgia-500 lg:from-62 lg:to-purple_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent">
                                 {{ iC + 1 }}
                             </div>
                             <div
-                                class="font-serif text-4xl font-bold uppercase tracking-widest text-green_giorgia-600 lg:bg-gradient-to-b lg:from-green_giorgia-500 lg:from-62 lg:to-green_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent"
-                            >
+                                class="font-serif text-4xl font-bold uppercase tracking-widest text-green_giorgia-600 lg:bg-gradient-to-b lg:from-green_giorgia-500 lg:from-62 lg:to-green_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent">
                                 {{ c.description }}
                             </div>
                         </div>
 
                         <!-- SECTION LIST -->
-                        <div
-                            v-for="(s, i) in sections.filter((s) => s.category == c.id)"
-                            :key="i"
-                            class="relative mb-8 flex w-full flex-col border-green_giorgia-200 lg:mb-16 lg:border"
-                        >
+                        <div v-for="(s, i) in sections.filter((s) => s.category == c.id)" :key="i"
+                            class="relative mb-8 flex w-full flex-col border-green_giorgia-200 lg:mb-16 lg:border">
                             <div class="flex w-full flex-col items-center px-4 py-8 lg:flex-row lg:px-8 lg:pt-12">
                                 <!-- IMAGE EVEN -->
-                                <div
-                                    v-if="i & 1 && !themesStore.isMD && !themesStore.isSM"
-                                    class="-ml-8 flex flex-shrink-0 pr-16"
-                                >
+                                <div v-if="i & 1 && !themesStore.isMD && !themesStore.isSM"
+                                    class="-ml-8 flex flex-shrink-0 pr-16">
                                     <div class="relative bg-green_giorgia-100 pr-10 pt-10">
                                         <div
-                                            class="flex justify-end space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5"
-                                        >
+                                            class="flex justify-end space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
                                             <div v-for="(p, iP) in s.programs" class="">
-                                                <img
-                                                    :src="`/src/assets/images/programs/${p.image}.svg`"
-                                                    class="h-8 w-6"
-                                                    v-fbr-tooltip="p.description"
-                                                />
+                                                <img :src="`/src/assets/images/programs/${p.image}.svg`" class="h-8 w-6"
+                                                    v-fbr-tooltip="p.description" />
                                             </div>
                                         </div>
                                         <div class="relative">
-                                            <div
-                                                v-if="s.image === 'goat_island.png'"
-                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"
-                                            ></div>
-                                            <img
-                                                :src="`/src/assets/images/portfolio/${s.image}`"
-                                                class="w-full bg-purple_giorgia-500 object-cover"
-                                                :class="s.imageClasses"
-                                                :style="s.imageStyles"
-                                            />
+                                            <div v-if="s.image === 'goat_island.png'"
+                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
+                                            <img :src="`/src/assets/images/portfolio/${s.image}`"
+                                                class="w-full bg-purple_giorgia-500 object-cover" :class="s.imageClasses"
+                                                :style="s.imageStyles" />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex flex-grow flex-col">
                                     <!-- TITLE -->
                                     <div
-                                        class="pb-4 font-serif text-4xl font-semibold text-purple_giorgia-700 lg:pb-10 lg:text-5xl"
-                                    >
+                                        class="pb-4 font-serif text-4xl font-semibold text-purple_giorgia-700 lg:pb-10 lg:text-5xl">
                                         {{ s.title }}
                                     </div>
                                     <div class="flex flex-wrap items-center space-x-2 lg:pb-6">
-                                        <div
-                                            v-for="t in s.tags"
-                                            :key="t"
-                                            class="mt-2 bg-green_giorgia-200 px-3 py-2 text-xs font-medium uppercase tracking-wider text-green_giorgia-700 lg:mt-0"
-                                        >
+                                        <div v-for="t in s.tags" :key="t"
+                                            class="mt-2 bg-green_giorgia-200 px-3 py-2 text-xs font-medium uppercase tracking-wider text-green_giorgia-700 lg:mt-0">
                                             {{ t }}
                                         </div>
                                     </div>
 
                                     <!-- IMAGE MOBILE -->
-                                    <div
-                                        v-if="themesStore.isMD || themesStore.isSM"
-                                        class="mx-auto mb-10 mt-4 flex flex-shrink-0"
-                                    >
+                                    <div v-if="themesStore.isMD || themesStore.isSM"
+                                        class="mx-auto mb-10 mt-4 flex flex-shrink-0">
                                         <div class="relative">
                                             <div class="flex space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
                                                 <div v-for="(p, iP) in s.programs" class="">
-                                                    <img
-                                                        :src="`/src/assets/images/programs/${p.image}.svg`"
-                                                        class="h-8 w-6"
-                                                        v-fbr-tooltip="p.description"
-                                                    />
+                                                    <img :src="`/src/assets/images/programs/${p.image}.svg`" class="h-8 w-6"
+                                                        v-fbr-tooltip="p.description" />
                                                 </div>
                                             </div>
                                             <div class="relative">
-                                                <div
-                                                    v-if="s.image === 'goat_island.png'"
-                                                    class="absolute inset-0 bg-gray-200 mix-blend-multiply"
-                                                ></div>
-                                                <img
-                                                    :src="`/src/assets/images/portfolio/${s.image}`"
+                                                <div v-if="s.image === 'goat_island.png'"
+                                                    class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
+                                                <img :src="`/src/assets/images/portfolio/${s.image}`"
                                                     class="w-full bg-purple_giorgia-500 object-cover"
-                                                    :class="s.imageClasses"
-                                                    :style="s.imageStyles"
-                                                />
+                                                    :class="s.imageClasses" :style="s.imageStyles" />
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- DESCRIPTION -->
-                                    <div
-                                        v-html="s.description"
-                                        class="text-sm font-light text-green_giorgia-700 xl:text-base"
-                                    ></div>
+                                    <div v-html="s.description"
+                                        class="text-sm font-light text-green_giorgia-700 xl:text-base"></div>
                                     <!-- BUTTON -->
                                     <div class="mt-8 flex items-center gap-x-6">
-                                        <button
-                                            v-if="s.isButton"
-                                            type="button"
-                                            @click="onButtonClick(s)"
-                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 lg:w-auto lg:py-3 lg:text-left"
-                                        >
+                                        <button v-if="s.isButton" type="button" @click="onButtonClick(s)"
+                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 focus:outline-none focus:bg-purple_giorgia-800 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 lg:w-auto lg:py-3 lg:text-left">
                                             Visualizza progetto
                                         </button>
-                                        <a
-                                            v-if="!s.isButton && s.url"
-                                            :href="s.url"
-                                            target="_blank"
-                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 lg:w-auto lg:py-3 lg:text-left"
-                                        >
+                                        <a v-if="!s.isButton && s.url" :href="s.url" target="_blank"
+                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 focus:outline-none focus:bg-purple_giorgia-800 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 lg:w-auto lg:py-3 lg:text-left">
                                             Visualizza progetto
                                         </a>
                                     </div>
                                 </div>
 
                                 <!-- IMAGE ODD -->
-                                <div
-                                    v-if="!(i & 1) && !themesStore.isMD && !themesStore.isSM"
-                                    class="-mr-8 flex flex-shrink-0 pl-16"
-                                >
+                                <div v-if="!(i & 1) && !themesStore.isMD && !themesStore.isSM"
+                                    class="-mr-8 flex flex-shrink-0 pl-16">
                                     <div class="relative bg-green_giorgia-100 pl-10 pt-10">
                                         <div class="flex space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
                                             <div v-for="(p, iP) in s.programs" class="">
-                                                <img
-                                                    :src="`/src/assets/images/programs/${p.image}.svg`"
-                                                    class="h-6 w-6"
-                                                    v-fbr-tooltip="p.description"
-                                                />
+                                                <img :src="`/src/assets/images/programs/${p.image}.svg`" class="h-6 w-6"
+                                                    v-fbr-tooltip="p.description" />
                                             </div>
                                         </div>
                                         <div class="relative">
-                                            <div
-                                                v-if="s.image === 'goat_island.png'"
-                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"
-                                            ></div>
-                                            <img
-                                                :src="`/src/assets/images/portfolio/${s.image}`"
-                                                class="w-full bg-purple_giorgia-500 object-cover"
-                                                :class="s.imageClasses"
-                                                :style="s.imageStyles"
-                                            />
+                                            <div v-if="s.image === 'goat_island.png'"
+                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
+                                            <img :src="`/src/assets/images/portfolio/${s.image}`"
+                                                class="w-full bg-purple_giorgia-500 object-cover" :class="s.imageClasses"
+                                                :style="s.imageStyles" />
                                         </div>
                                     </div>
                                 </div>
@@ -191,14 +145,10 @@
                 <!-- CATEGORY MENU (ONLY DESKTOP) -->
                 <div class="hidden pt-9 lg:block">
                     <div class="sticky top-0 -ml-px border-l border-r border-t border-green_giorgia-200">
-                        <div
-                            v-for="(c, iC) in categories"
-                            :key="iC"
+                        <div v-for="(c, iC) in categories" :key="iC"
                             class="cursor-pointer border-b border-green_giorgia-200 px-3 py-6 font-extralight uppercase text-green_giorgia-600 transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100"
-                            @click="scrollToCategory(c.id)"
-                            :class="isCategoryActive(c.id) ? 'bg-green_giorgia-200' : ''"
-                            style="writing-mode: vertical-rl"
-                        >
+                            @click="scrollToCategory(c.id)" :class="isCategoryActive(c.id) ? 'bg-green_giorgia-200' : ''"
+                            style="writing-mode: vertical-rl">
                             {{ c.description }}
                         </div>
                     </div>
@@ -211,7 +161,8 @@
 <script setup lang="ts">
 import SectionHeader from "@/components/SectionHeader.vue";
 import { useThemes } from "@/store";
-import { Ref, onMounted, ref } from "vue";
+import { Ref, onMounted, onUnmounted, ref } from "vue";
+import GiorgiaModal from "@/components/GiorgiaModal.vue";
 
 export type PortfolioSection = {
     title: string;
@@ -224,6 +175,7 @@ export type PortfolioSection = {
     imageStyles: string;
     isButton: boolean;
     url?: string;
+    youtubeId?: string;
 };
 
 const enum CategoryType {
@@ -234,6 +186,32 @@ const enum CategoryType {
 }
 const showVideoPlayer = ref(false);
 const videoPlayerUrl: Ref<string | null> = ref(null);
+const youtubeConfig = {
+    height: '100%',
+    width: '100%',
+    playerVars: {
+        'playsinline': 1
+    },
+};
+
+onMounted(() => {
+    // initialize youtube player
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag!.parentNode!.insertBefore(tag, firstScriptTag);
+});
+
+// (window as any).onYouTubeIframeAPIReady = () => {
+//     initYoutube();
+// };
+let player: YT.Player | null = null;
+// function initYoutube() {
+//     player = new YT.Player('youtubePlayer', {
+//         ...youtubeConfig,
+//         videoId: 'M7lc1UVf-VE',
+//     });
+// }
 
 const themesStore = useThemes();
 
@@ -411,7 +389,7 @@ const sections: PortfolioSection[] = [
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;",
         isButton: true,
-        url: "http://youtu.be/MPr4v-aY4d8",
+        youtubeId: "MPr4v-aY4d8",
     },
     {
         title: "Scandalo! vs Daniel Masters",
@@ -426,8 +404,8 @@ const sections: PortfolioSection[] = [
         image: "scandalo_vs_daniel_masters.png",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 20%;",
-        isButton: false,
-        url: "https://youtu.be/D9DKcYr1GhU",
+        isButton: true,
+        youtubeId: "D9DKcYr1GhU",
     },
     {
         title: "The Magician",
@@ -441,8 +419,8 @@ const sections: PortfolioSection[] = [
         image: "the_magician.gif",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9;",
-        isButton: false,
-        url: "https://youtu.be/RNSKAoiSGQM",
+        isButton: true,
+        youtubeId: "RNSKAoiSGQM",
     },
     {
         title: "Photo Editing 1",
@@ -506,26 +484,38 @@ function isCategoryActive(categoryId: number) {
     return false;
 }
 
-function ciao(){
-    console.log("asd");
-}
-
 function onButtonClick(curSection: PortfolioSection) {
-            console.log("A")
-            console.log(curSection.title)
     switch (curSection.title) {
         case "There’s no place like home":
-            videoPlayerUrl.value = curSection.url!;
-            showVideoPlayer.value = true;
-            console.log("B")
+            openYoutube(curSection.youtubeId!);
             break;
-        case "CICCIO VS PIPPO":
-            // open video
+        case "Scandalo! vs Daniel Masters":
+            openYoutube(curSection.youtubeId!);
             break;
-
+        case "The Magician":
+            openYoutube(curSection.youtubeId!);
+            break;
         default:
             break;
     }
+}
+
+function openYoutube(videoId: string) {
+    showVideoPlayer.value = true;
+    setTimeout(() => {
+        player = new YT.Player('youtubePlayer', {
+            ...youtubeConfig,
+            videoId: videoId,
+        });
+    }, 1000);
+    // if (!player) {
+    //     player = new YT.Player('youtubePlayer', {
+    //         ...youtubeConfig,
+    //         videoId: videoId,
+    //     });
+    // } else {
+    //     player.cueVideoById(videoId);
+    // }
 }
 
 // function updateCategoryActive() {

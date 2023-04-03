@@ -42,7 +42,7 @@
                         <div class="mt-8 flex items-center gap-x-6">
                             <a href="https://drive.google.com/file/d/1RYirfpFwpZmVsuZXPGG-slKV7TC7zmpM/view?usp=share_link" target="_blank"
                                 class="w-full lg:w-auto text-center lg:text-left transition-colors duration-150 ease-in-out bg-purple_giorgia-600 hover:bg-purple_giorgia-700
-                                                                              px-6 py-5 lg:py-3 text-sm font-semibold text-purple_giorgia-50 shadow-sm">Scarica
+                                                                              px-6 py-5 lg:py-3 text-sm font-semibold focus:outline-none focus:bg-purple_giorgia-800 text-purple_giorgia-50 shadow-sm">Scarica
                                 CV</a>
                         </div>
                     </figure>
