@@ -27,15 +27,14 @@
                         </svg>
 
                         <!-- TEXT -->
-                        <blockquote class="text-base leading-7 xl:text-lg xl:leading-8 font-light text-green_giorgia-800">
-                            <p>Dopo aver frequentato i primi tre anni della magistrale a ciclo unico Ingegneria Edile - Architettura presso l’Università di Padova,
-                                perseguendo i miei grandi amori per cinema e fotografia cambio rotta e mi avvicino al mondo dell’arte prima con il triennio di
-                                Cinema, fotografia e televisione presso l’Accademia di Belle Arti di Bologna e poi, anche per recuperare le capacità progettuali
-                                acquisite nel primo Corso di Studi, continuo con il biennio magistrale di Scenografia per il cinema e la televisione presso
-                                l’Accademia di Belle Arti di Brera, in cui mi laureo a pieni voti assoluti con una tesi sull’estetica del dolore.
+                        <blockquote class="text-sm leading-7 xl:text-base xl:leading-8 font-light text-green_giorgia-800">
+                            <p>Sono Boscolo Giorgia e ho 29 anni. Dopo aver frequentato i primi tre anni di <i>Ingegneria Edile - Architettura</i> presso l’Università di Padova,
+                                perseguendo i miei grandi amori per cinema e fotografia, cambio rotta conseguendo prima il diploma di laurea di primo livello in
+                                <i>Cinema, fotografia e televisione</i> all’Accademia di Belle Arti di Bologna e poi quello di secondo livello in <i>Scenografia per
+                                il cinema e la televisione</i> all’Accademia di Brera, andando così a recuperare ciò che avevo appreso in ambito progettuale nei primi tre anni del mio percorso.
+                                In questi anni ho acquisito conoscenze in ambito grafico e di sound design, ho sperimentato con la fotografia e il video,  ho approfondito la progettazione 3D e imparato a padroneggiare quella 2D.
                                 Sono una persona molto curiosa, poliedrica e dinamica, sempre pronta ad imparare cose nuove e a mettermi alla prova.
-                                Metto la passione in tutto quello che faccio e mi adatto bene al lavoro in team, come ho potuto più volte sperimentare
-                                durante il mio percorso accademico e le mie esperienze lavorative ed extracurriculari.
+                                Metto la passione in tutto quello che faccio e mi adatto bene al lavoro in team, come ho potuto più volte sperimentare durante il mio percorso accademico e le mie esperienze lavorative ed extracurriculari.
                             </p>
                         </blockquote>
 

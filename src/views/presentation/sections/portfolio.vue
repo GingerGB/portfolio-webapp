@@ -1,107 +1,185 @@
 <template>
-    <div class="relative pt-32 lg:pt-52 bg-green_giorgia-200">
+    <div class="relative bg-green_giorgia-200 pt-32 lg:pt-52">
+        <!-- <iframe
+            v-if="showVideoPlayer && videoPlayerUrl"
+            id="player"
+            type="text/html"
+            width="640"
+            height="360"
+            :src="videoPlayerUrl"
+            frameborder="0"
+        ></iframe> -->
+        <!-- <iframe
+            id="player"
+            type="text/html"
+            width="640"
+            height="360"
+            src="http://youtu.be/MPr4v-aY4d8"
+            frameborder="0"
+        ></iframe> -->
+
         <SectionHeader initial="P" text="Portfolio" :spaced-bottom="true" />
 
-        <div class="bg-green_giorgia-50 w-full flex flex-col pt-20 lg:pt-36">
-
-            <div class="flex mx-auto max-w-7xl lg:px-8 space-y-10">
-
-                <div class="flex flex-col flex-grow">
+        <div class="flex w-full flex-col bg-green_giorgia-50 pt-20 lg:pt-36">
+            <div class="mx-auto flex max-w-7xl space-y-10 lg:px-8">
+                <div class="flex flex-grow flex-col">
                     <!-- CATEGORY LIST -->
-                    <div v-for="(c, iC) in categories" :key="iC" class="w-full pt-4 pb-4 lg:pb-20" :id="'category_' + c.id">
-                        <div class="flex pb-2 lg:pb-0 w-full lg:justify-end px-4 lg:px-0 lg:-mb-9">
+                    <div
+                        v-for="(c, iC) in categories"
+                        :key="iC"
+                        class="w-full pb-4 pt-4 lg:pb-20"
+                        :id="'category_' + c.id"
+                    >
+                        <div class="flex w-full px-4 pb-2 lg:-mb-9 lg:justify-end lg:px-0 lg:pb-0">
                             <div
-                                class="font-serif text-4xl lg:text-8xl font-bold tracking-widest uppercase pr-4 text-purple_giorgia-600 lg:bg-gradient-to-b lg:from-62 lg:to-62 lg:from-purple_giorgia-500 lg:to-purple_giorgia-300 lg:bg-clip-text lg:text-transparent">
-                                {{ (iC + 1) }}</div>
+                                class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600 lg:bg-gradient-to-b lg:from-purple_giorgia-500 lg:from-62 lg:to-purple_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent"
+                            >
+                                {{ iC + 1 }}
+                            </div>
                             <div
-                                class="font-serif text-4xl lg:text-8xl font-bold tracking-widest uppercase text-green_giorgia-600 lg:bg-gradient-to-b lg:from-62 lg:to-62 lg:from-green_giorgia-500 lg:to-green_giorgia-300 lg:bg-clip-text lg:text-transparent">
-                                {{ c.description }}</div>
+                                class="font-serif text-4xl font-bold uppercase tracking-widest text-green_giorgia-600 lg:bg-gradient-to-b lg:from-green_giorgia-500 lg:from-62 lg:to-green_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent"
+                            >
+                                {{ c.description }}
+                            </div>
                         </div>
 
                         <!-- SECTION LIST -->
-                        <div v-for="(s, i) in sections.filter(s => s.category == c.id)" :key="i"
-                            class="flex flex-col w-full lg:border border-green_giorgia-200 relative mb-8 lg:mb-16">
-                            <div class="flex flex-col lg:flex-row items-center w-full py-8 lg:pt-12 px-4 lg:px-8">
+                        <div
+                            v-for="(s, i) in sections.filter((s) => s.category == c.id)"
+                            :key="i"
+                            class="relative mb-8 flex w-full flex-col border-green_giorgia-200 lg:mb-16 lg:border"
+                        >
+                            <div class="flex w-full flex-col items-center px-4 py-8 lg:flex-row lg:px-8 lg:pt-12">
                                 <!-- IMAGE EVEN -->
-                                <div v-if="(i & 1) && !themesStore.isMD && !themesStore.isSM"
-                                    class="flex flex-shrink-0 -ml-8 pr-16">
-                                    <div class="bg-green_giorgia-100 pr-10 pt-10 relative">
+                                <div
+                                    v-if="i & 1 && !themesStore.isMD && !themesStore.isSM"
+                                    class="-ml-8 flex flex-shrink-0 pr-16"
+                                >
+                                    <div class="relative bg-green_giorgia-100 pr-10 pt-10">
                                         <div
-                                            class="flex justify-end space-x-3 pb-5 pt-5 border-t border-purple_giorgia-400">
+                                            class="flex justify-end space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5"
+                                        >
                                             <div v-for="(p, iP) in s.programs" class="">
-                                                <img :src="`/src/assets/images/programs/${p.image}.svg`" class="w-6 h-8"
-                                                    v-fbr-tooltip="p.description" />
+                                                <img
+                                                    :src="`/src/assets/images/programs/${p.image}.svg`"
+                                                    class="h-8 w-6"
+                                                    v-fbr-tooltip="p.description"
+                                                />
                                             </div>
                                         </div>
                                         <div class="relative">
-                                            <div v-if="s.image === 'goat_island.png'"
-                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
-                                            <img :src="`/src/assets/images/portfolio/${s.image}`"
-                                                class="bg-purple_giorgia-500 w-full object-cover" :class="s.imageClasses"
-                                                :style="s.imageStyles" />
+                                            <div
+                                                v-if="s.image === 'goat_island.png'"
+                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"
+                                            ></div>
+                                            <img
+                                                :src="`/src/assets/images/portfolio/${s.image}`"
+                                                class="w-full bg-purple_giorgia-500 object-cover"
+                                                :class="s.imageClasses"
+                                                :style="s.imageStyles"
+                                            />
                                         </div>
                                     </div>
                                 </div>
-                                <div class="flex flex-col flex-grow">
+                                <div class="flex flex-grow flex-col">
                                     <!-- TITLE -->
                                     <div
-                                        class="text-purple_giorgia-700 font-serif font-semibold text-4xl lg:text-5xl pb-4 lg:pb-10">
+                                        class="pb-4 font-serif text-4xl font-semibold text-purple_giorgia-700 lg:pb-10 lg:text-5xl"
+                                    >
                                         {{ s.title }}
                                     </div>
                                     <div class="flex flex-wrap items-center space-x-2 lg:pb-6">
-                                        <div v-for="t in s.tags" :key="t"
-                                            class="bg-green_giorgia-200 text-green_giorgia-700 font-medium text-xs tracking-wider uppercase px-3 py-2 mt-2 lg:mt-0">
+                                        <div
+                                            v-for="t in s.tags"
+                                            :key="t"
+                                            class="mt-2 bg-green_giorgia-200 px-3 py-2 text-xs font-medium uppercase tracking-wider text-green_giorgia-700 lg:mt-0"
+                                        >
                                             {{ t }}
                                         </div>
                                     </div>
 
                                     <!-- IMAGE MOBILE -->
-                                    <div v-if="themesStore.isMD || themesStore.isSM"
-                                        class="flex flex-shrink-0 mt-4 mb-10 mx-auto">
+                                    <div
+                                        v-if="themesStore.isMD || themesStore.isSM"
+                                        class="mx-auto mb-10 mt-4 flex flex-shrink-0"
+                                    >
                                         <div class="relative">
-                                            <div class="flex space-x-3 pb-5 pt-5 border-t border-purple_giorgia-400">
+                                            <div class="flex space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
                                                 <div v-for="(p, iP) in s.programs" class="">
-                                                    <img :src="`/src/assets/images/programs/${p.image}.svg`" class="w-6 h-8"
-                                                        v-fbr-tooltip="p.description" />
+                                                    <img
+                                                        :src="`/src/assets/images/programs/${p.image}.svg`"
+                                                        class="h-8 w-6"
+                                                        v-fbr-tooltip="p.description"
+                                                    />
                                                 </div>
                                             </div>
                                             <div class="relative">
-                                                <div v-if="s.image === 'goat_island.png'"
-                                                    class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
-                                                <img :src="`/src/assets/images/portfolio/${s.image}`"
-                                                    class="bg-purple_giorgia-500 w-full object-cover"
-                                                    :class="s.imageClasses" :style="s.imageStyles" />
+                                                <div
+                                                    v-if="s.image === 'goat_island.png'"
+                                                    class="absolute inset-0 bg-gray-200 mix-blend-multiply"
+                                                ></div>
+                                                <img
+                                                    :src="`/src/assets/images/portfolio/${s.image}`"
+                                                    class="w-full bg-purple_giorgia-500 object-cover"
+                                                    :class="s.imageClasses"
+                                                    :style="s.imageStyles"
+                                                />
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- DESCRIPTION -->
-                                    <div v-html="s.description" class="text-green_giorgia-700 font-light text-lg"></div>
+                                    <div
+                                        v-html="s.description"
+                                        class="text-sm font-light text-green_giorgia-700 xl:text-base"
+                                    ></div>
                                     <!-- BUTTON -->
                                     <div class="mt-8 flex items-center gap-x-6">
-                                        <a href="#" target="_blank"
-                                            class="w-full lg:w-auto text-center lg:text-left transition-colors duration-150 ease-in-out bg-purple_giorgia-600 hover:bg-purple_giorgia-700
-                                                                                                                                                                      px-6 py-5 lg:py-3 text-sm font-semibold text-purple_giorgia-50 shadow-sm">Visualizza
-                                            progetto</a>
+                                        <button
+                                            v-if="s.isButton"
+                                            type="button"
+                                            @click="onButtonClick(s)"
+                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 lg:w-auto lg:py-3 lg:text-left"
+                                        >
+                                            Visualizza progetto
+                                        </button>
+                                        <a
+                                            v-if="!s.isButton && s.url"
+                                            :href="s.url"
+                                            target="_blank"
+                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 lg:w-auto lg:py-3 lg:text-left"
+                                        >
+                                            Visualizza progetto
+                                        </a>
                                     </div>
                                 </div>
 
                                 <!-- IMAGE ODD -->
-                                <div v-if="!(i & 1) && !themesStore.isMD && !themesStore.isSM"
-                                    class="flex flex-shrink-0 -mr-8 pl-16">
-                                    <div class="bg-green_giorgia-100 pl-10 pt-10 relative">
-                                        <div class="flex space-x-3 pb-5 pt-5 border-t border-purple_giorgia-400">
+                                <div
+                                    v-if="!(i & 1) && !themesStore.isMD && !themesStore.isSM"
+                                    class="-mr-8 flex flex-shrink-0 pl-16"
+                                >
+                                    <div class="relative bg-green_giorgia-100 pl-10 pt-10">
+                                        <div class="flex space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
                                             <div v-for="(p, iP) in s.programs" class="">
-                                                <img :src="`/src/assets/images/programs/${p.image}.svg`" class="w-6 h-6"
-                                                    v-fbr-tooltip="p.description" />
+                                                <img
+                                                    :src="`/src/assets/images/programs/${p.image}.svg`"
+                                                    class="h-6 w-6"
+                                                    v-fbr-tooltip="p.description"
+                                                />
                                             </div>
                                         </div>
                                         <div class="relative">
-                                            <div v-if="s.image === 'goat_island.png'"
-                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
-                                            <img :src="`/src/assets/images/portfolio/${s.image}`"
-                                                class="bg-purple_giorgia-500 w-full object-cover" :class="s.imageClasses"
-                                                :style="s.imageStyles" />
+                                            <div
+                                                v-if="s.image === 'goat_island.png'"
+                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"
+                                            ></div>
+                                            <img
+                                                :src="`/src/assets/images/portfolio/${s.image}`"
+                                                class="w-full bg-purple_giorgia-500 object-cover"
+                                                :class="s.imageClasses"
+                                                :style="s.imageStyles"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -111,12 +189,16 @@
                 </div>
 
                 <!-- CATEGORY MENU (ONLY DESKTOP) -->
-                <div class="pt-9 hidden lg:block">
-                    <div class="sticky top-0 border-l border-r border-t border-green_giorgia-200 -ml-px">
-                        <div v-for="(c, iC) in categories" :key="iC"
-                            class="px-3 py-6 border-b cursor-pointer transition-colors ease-in-out duration-150 font-extralight uppercase text-green_giorgia-600 hover:bg-green_giorgia-100 border-green_giorgia-200"
-                            @click="scrollToCategory(c.id)" :class="isCategoryActive(c.id) ? 'bg-green_giorgia-200' : ''"
-                            style="writing-mode: vertical-rl;">
+                <div class="hidden pt-9 lg:block">
+                    <div class="sticky top-0 -ml-px border-l border-r border-t border-green_giorgia-200">
+                        <div
+                            v-for="(c, iC) in categories"
+                            :key="iC"
+                            class="cursor-pointer border-b border-green_giorgia-200 px-3 py-6 font-extralight uppercase text-green_giorgia-600 transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100"
+                            @click="scrollToCategory(c.id)"
+                            :class="isCategoryActive(c.id) ? 'bg-green_giorgia-200' : ''"
+                            style="writing-mode: vertical-rl"
+                        >
                             {{ c.description }}
                         </div>
                     </div>
@@ -126,10 +208,10 @@
     </div>
 </template>
 
-
 <script setup lang="ts">
 import SectionHeader from "@/components/SectionHeader.vue";
-import { useThemes } from '@/store';
+import { useThemes } from "@/store";
+import { Ref, onMounted, ref } from "vue";
 
 export type PortfolioSection = {
     title: string;
@@ -140,14 +222,18 @@ export type PortfolioSection = {
     image: string;
     imageClasses: string;
     imageStyles: string;
-}
+    isButton: boolean;
+    url?: string;
+};
 
 const enum CategoryType {
     set_design,
     photography,
     video,
-    photoediting
+    photoediting,
 }
+const showVideoPlayer = ref(false);
+const videoPlayerUrl: Ref<string | null> = ref(null);
 
 const themesStore = useThemes();
 
@@ -180,87 +266,266 @@ const photoEditing2Description = `Lorem ipsum dolor sit amet, consectetur adipis
 const photoEditing3Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
 const photoEditing4Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
 
-const categories: { id: CategoryType; description: string }[] = [{ id: CategoryType.set_design, description: "Set design" }, { id: CategoryType.photography, description: "Fotografia" },
-{ id: CategoryType.video, description: "Video" }, { id: CategoryType.photoediting, description: "Photo editing" }];
+const categories: { id: CategoryType; description: string }[] = [
+    { id: CategoryType.set_design, description: "Set design" },
+    { id: CategoryType.photography, description: "Fotografia" },
+    { id: CategoryType.video, description: "Video" },
+    { id: CategoryType.photoediting, description: "Photo editing" },
+];
 
-const sections: PortfolioSection[] = [{
-    title: "Come sangue nella neve", category: CategoryType.set_design, description: comeSangueDescription, tags: ["scenografia", "progetto tecnico", "fotomanipolazione"],
-    programs: [{ image: "autocad", description: "AutoCAD" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }, { image: "indesign", description: "InDesign" }],
-    image: "sangue_1.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;"
-}, {
-    title: "Oltre le porte di Magickland", category: CategoryType.set_design, description: magicklandDescription, tags: ["scenografia", "scenotecnica", "fotomanipolazione"],
-    programs: [{ image: "autocad", description: "AutoCAD" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }],
-    image: "magickland.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;"
-}, {
-    title: "Ulisse", category: CategoryType.set_design, description: ulisseDescription, tags: ["scenografia", "modellazione 3d", "illuminotecnica"],
-    programs: [{ image: "autocad", description: "AutoCAD" }, { image: "3dsmax", description: "3ds Max" }, { image: "maya", description: "Maya" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }],
-    image: "ulisse.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;"
-}, {
-    title: "The Curse of Nanny Goat Island", category: CategoryType.set_design, description: curseDescription, tags: ["scenografia", "disegno progettuale"],
-    programs: [{ image: "autocad", description: "AutoCAD" }, { image: "photoshop", description: "Photoshop" }, { image: "illustrator", description: "Illustrator" }],
-    image: "goat_island.png", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
-}, {
-    title: "Shooting Daniela e Kevin", category: CategoryType.photography, description: danielaKevinShootingDescription, tags: ["fotografia", "photo editing"],
-    programs: [{ image: "lightroom", description: "Lightroom" }, { image: "photoshop", description: "Photoshop" }],
-    image: "daniela_kevin.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
-}, {
-    title: "Hekate", category: CategoryType.photography, description: hekateDescription, tags: ["fotografia", "photo editing"],
-    programs: [{ image: "photoshop", description: "Photoshop" }],
-    image: "hekate.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 65%;"
-}, {
-    title: "Urban Memories", category: CategoryType.photography, description: urbanMemoriesDescription, tags: ["fotografia", "photo editing", "impaginazione"],
-    programs: [{ image: "photoshop", description: "Photoshop" }, { image: "indesign", description: "InDesign" }],
-    image: "urban_memories_3.png", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 15%;"
-}, {
-    title: "Raccolta fotografica", category: CategoryType.photography, description: photographicCollectionDescription, tags: ["fotografia", "photo editing"],
-    programs: [{ image: "lightroom", description: "Lightroom" }, { image: "photoshop", description: "Photoshop" }],
-    image: "photographic_collection.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
-}, {
-    title: "There’s no place like home", category: CategoryType.video, description: noPlaceLikeHomeDescription, tags: ["video editing", "montaggio", "sound design"],
-    programs: [{ image: "premiere", description: "Premiere" }, { image: "audition", description: "Audition" }],
-    image: "no_place_like_home.png", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;"
-}, {
-    title: "Scandalo! vs Daniel Masters", category: CategoryType.video, description: scandaloVsDanielMasterDescription, tags: ["video editing", "montaggio", "video grafica"],
-    programs: [{ image: "premiere", description: "Premiere" }, { image: "after_effects", description: "After Effects" }, { image: "audition", description: "Audition" }],
-    image: "scandalo_vs_daniel_masters.png", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9; object-position: 0 20%;"
-}, {
-    title: "The Magician", category: CategoryType.video, description: theMagicianDescription, tags: ["sound design"],
-    programs: [{ image: "premiere", description: "Premiere" }, { image: "audition", description: "Audition" }],
-    image: "the_magician.gif", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9;"
-}, {
-    title: "Photo Editing 1", category: CategoryType.photoediting, description: photoEditing1Description, tags: ["photo editing", "fotomanipolazione"],
-    programs: [{ image: "photoshop", description: "Photoshop" }],
-    image: "photo_editing_1.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9;"
-}, {
-    title: "Photo Editing 2", category: CategoryType.photoediting, description: photoEditing2Description, tags: ["photo editing", "fotomanipolazione"],
-    programs: [{ image: "photoshop", description: "Photoshop" }],
-    image: "photo_editing_2.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9;"
-}, {
-    title: "Photo Editing 3", category: CategoryType.photoediting, description: photoEditing3Description, tags: ["photo editing", "fotomanipolazione"],
-    programs: [{ image: "photoshop", description: "Photoshop" }],
-    image: "photo_editing_3.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9;"
-}, {
-    title: "Photo Editing 4", category: CategoryType.photoediting, description: photoEditing4Description, tags: ["photo editing", "fotomanipolazione"],
-    programs: [{ image: "photoshop", description: "Photoshop" }],
-    image: "photo_editing_4.jpg", imageClasses: "lg:h-72", imageStyles: "aspect-ratio: 16/9;"
-},
-
+const sections: PortfolioSection[] = [
+    {
+        title: "Come sangue nella neve",
+        category: CategoryType.set_design,
+        description: comeSangueDescription,
+        tags: ["scenografia", "progetto tecnico", "fotomanipolazione"],
+        programs: [
+            { image: "autocad", description: "AutoCAD" },
+            { image: "photoshop", description: "Photoshop" },
+            { image: "illustrator", description: "Illustrator" },
+            { image: "indesign", description: "InDesign" },
+        ],
+        image: "sangue_1.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;",
+        isButton: false,
+        url: "https://drive.google.com/drive/folders/1Olr3LKbnHwrZz54Gy6D7GUg63tyWJy_P?usp=share_linkcom",
+    },
+    {
+        title: "Oltre le porte di Magickland",
+        category: CategoryType.set_design,
+        description: magicklandDescription,
+        tags: ["scenografia", "scenotecnica", "fotomanipolazione"],
+        programs: [
+            { image: "autocad", description: "AutoCAD" },
+            { image: "photoshop", description: "Photoshop" },
+            { image: "illustrator", description: "Illustrator" },
+        ],
+        image: "magickland.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;",
+        isButton: false,
+        url: "https://drive.google.com/drive/folders/1CyD_M-0gV4PqPax2rOUQMFSsRqnWyPXE?usp=share_link",
+    },
+    {
+        title: "Ulisse",
+        category: CategoryType.set_design,
+        description: ulisseDescription,
+        tags: ["scenografia", "modellazione 3d", "illuminotecnica"],
+        programs: [
+            { image: "autocad", description: "AutoCAD" },
+            { image: "3dsmax", description: "3ds Max" },
+            { image: "maya", description: "Maya" },
+            { image: "photoshop", description: "Photoshop" },
+            { image: "illustrator", description: "Illustrator" },
+        ],
+        image: "ulisse.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;",
+        isButton: false,
+        url: "https://drive.google.com/drive/folders/1wT3WjSS0KT2p0Z086y98Sg5pLKVJ70W8?usp=share_link",
+    },
+    {
+        title: "The Curse of Nanny Goat Island",
+        category: CategoryType.set_design,
+        description: curseDescription,
+        tags: ["scenografia", "disegno progettuale"],
+        programs: [
+            { image: "autocad", description: "AutoCAD" },
+            { image: "photoshop", description: "Photoshop" },
+            { image: "illustrator", description: "Illustrator" },
+        ],
+        image: "goat_island.png",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;",
+        isButton: false,
+        url: "https://drive.google.com/drive/folders/1jZvLblDtT8_xaxtWfGd_47sUNNC7dK1Y?usp=share_link",
+    },
+    {
+        title: "Shooting Daniela e Kevin",
+        category: CategoryType.photography,
+        description: danielaKevinShootingDescription,
+        tags: ["fotografia", "photo editing"],
+        programs: [
+            { image: "lightroom", description: "Lightroom" },
+            { image: "photoshop", description: "Photoshop" },
+        ],
+        image: "daniela_kevin.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;",
+        isButton: false,
+        url: "https://drive.google.com/file/d/1W0UfgIFQtO-WcYMTG3kAsBNC2-kdjfUS/view?usp=share_link",
+    },
+    {
+        title: "Hekate",
+        category: CategoryType.photography,
+        description: hekateDescription,
+        tags: ["fotografia", "photo editing"],
+        programs: [{ image: "photoshop", description: "Photoshop" }],
+        image: "hekate.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 65%;",
+        isButton: false,
+        url: "https://drive.google.com/file/d/1AEDC-GrDKkvgoPx-QqbxZhv8AJXSCPfi/view?usp=share_link",
+    },
+    {
+        title: "Urban Memories",
+        category: CategoryType.photography,
+        description: urbanMemoriesDescription,
+        tags: ["fotografia", "photo editing", "impaginazione"],
+        programs: [
+            { image: "photoshop", description: "Photoshop" },
+            { image: "indesign", description: "InDesign" },
+        ],
+        image: "urban_memories_3.png",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 15%;",
+        isButton: false,
+        url: "https://drive.google.com/file/d/1gVJn9b75xWZIcxIKQ7e7SJOH3VvONOOB/view?usp=share_link",
+    },
+    {
+        title: "Raccolta fotografica",
+        category: CategoryType.photography,
+        description: photographicCollectionDescription,
+        tags: ["fotografia", "photo editing"],
+        programs: [
+            { image: "lightroom", description: "Lightroom" },
+            { image: "photoshop", description: "Photoshop" },
+        ],
+        image: "photographic_collection.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;",
+        isButton: false,
+        url: "https://drive.google.com/file/d/1bxTDb6DFctx_RpyaZO1Vm3J6YZbhtV6i/view?usp=share_link",
+    },
+    {
+        title: "There’s no place like home",
+        category: CategoryType.video,
+        description: noPlaceLikeHomeDescription,
+        tags: ["video editing", "montaggio", "sound design"],
+        programs: [
+            { image: "premiere", description: "Premiere" },
+            { image: "audition", description: "Audition" },
+        ],
+        image: "no_place_like_home.png",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;",
+        isButton: true,
+        url: "http://youtu.be/MPr4v-aY4d8",
+    },
+    {
+        title: "Scandalo! vs Daniel Masters",
+        category: CategoryType.video,
+        description: scandaloVsDanielMasterDescription,
+        tags: ["video editing", "montaggio", "video grafica"],
+        programs: [
+            { image: "premiere", description: "Premiere" },
+            { image: "after_effects", description: "After Effects" },
+            { image: "audition", description: "Audition" },
+        ],
+        image: "scandalo_vs_daniel_masters.png",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9; object-position: 0 20%;",
+        isButton: false,
+        url: "https://youtu.be/D9DKcYr1GhU",
+    },
+    {
+        title: "The Magician",
+        category: CategoryType.video,
+        description: theMagicianDescription,
+        tags: ["sound design"],
+        programs: [
+            { image: "premiere", description: "Premiere" },
+            { image: "audition", description: "Audition" },
+        ],
+        image: "the_magician.gif",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9;",
+        isButton: false,
+        url: "https://youtu.be/RNSKAoiSGQM",
+    },
+    {
+        title: "Photo Editing 1",
+        category: CategoryType.photoediting,
+        description: photoEditing1Description,
+        tags: ["photo editing", "fotomanipolazione"],
+        programs: [{ image: "photoshop", description: "Photoshop" }],
+        image: "photo_editing_1.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9;",
+        isButton: false,
+    },
+    {
+        title: "Photo Editing 2",
+        category: CategoryType.photoediting,
+        description: photoEditing2Description,
+        tags: ["photo editing", "fotomanipolazione"],
+        programs: [{ image: "photoshop", description: "Photoshop" }],
+        image: "photo_editing_2.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9;",
+        isButton: false,
+    },
+    {
+        title: "Photo Editing 3",
+        category: CategoryType.photoediting,
+        description: photoEditing3Description,
+        tags: ["photo editing", "fotomanipolazione"],
+        programs: [{ image: "photoshop", description: "Photoshop" }],
+        image: "photo_editing_3.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9;",
+        isButton: false,
+    },
+    {
+        title: "Photo Editing 4",
+        category: CategoryType.photoediting,
+        description: photoEditing4Description,
+        tags: ["photo editing", "fotomanipolazione"],
+        programs: [{ image: "photoshop", description: "Photoshop" }],
+        image: "photo_editing_4.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9;",
+        isButton: false,
+    },
 ];
 
 function scrollToCategory(categoryId: number) {
-    const categoryElement = document.getElementById('category_' + categoryId);
+    const categoryElement = document.getElementById("category_" + categoryId);
     if (categoryElement) {
         categoryElement.scrollIntoView({ behavior: "smooth" });
     }
 }
 
 function isCategoryActive(categoryId: number) {
-    const categoryElement = document.getElementById('category_' + categoryId);
+    const categoryElement = document.getElementById("category_" + categoryId);
     if (categoryElement) {
         const rect = categoryElement.getBoundingClientRect();
         return rect.top >= 0 && rect.bottom <= window.innerHeight;
     }
     return false;
+}
+
+function ciao(){
+    console.log("asd");
+}
+
+function onButtonClick(curSection: PortfolioSection) {
+            console.log("A")
+            console.log(curSection.title)
+    switch (curSection.title) {
+        case "There’s no place like home":
+            videoPlayerUrl.value = curSection.url!;
+            showVideoPlayer.value = true;
+            console.log("B")
+            break;
+        case "CICCIO VS PIPPO":
+            // open video
+            break;
+
+        default:
+            break;
+    }
 }
 
 // function updateCategoryActive() {
@@ -277,7 +542,6 @@ function isCategoryActive(categoryId: number) {
 // }
 
 // window.addEventListener('scroll', updateCategoryActive);
-
 </script>
 
 <style lang="scss"></style>
