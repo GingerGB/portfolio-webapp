@@ -6,7 +6,7 @@ import router from "./router";
 import App from './App.vue';
 
 //private libraries
-import PortfolioWebapp from "./index.ts";
+import PortfolioWebapp from "./index";
 
 // styles
 import "./assets/styles/main.scss";
