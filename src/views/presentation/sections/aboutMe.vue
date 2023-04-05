@@ -32,8 +32,8 @@
                                 perseguendo i miei grandi amori per cinema e fotografia, cambio rotta conseguendo prima il diploma di laurea di primo livello in
                                 <i>Cinema, fotografia e televisione</i> all’Accademia di Belle Arti di Bologna e poi quello di secondo livello in <i>Scenografia per
                                 il cinema e la televisione</i> all’Accademia di Brera, andando così a recuperare ciò che avevo appreso in ambito progettuale nei primi tre anni del mio percorso.
-                                In questi anni ho acquisito conoscenze in ambito grafico e di sound design, ho sperimentato con la fotografia e il video,  ho approfondito la progettazione 3D e imparato a padroneggiare quella 2D.
-                                Sono una persona molto curiosa, poliedrica e dinamica, sempre pronta ad imparare cose nuove e a mettermi alla prova.
+                                <br>In questi anni ho acquisito conoscenze in ambito grafico e di sound design, ho sperimentato con la fotografia e il video,  ho approfondito la progettazione 3D e imparato a padroneggiare quella 2D.
+                                <br>Sono una persona molto curiosa, poliedrica e dinamica, sempre pronta ad imparare cose nuove e a mettermi alla prova.
                                 Metto la passione in tutto quello che faccio e mi adatto bene al lavoro in team, come ho potuto più volte sperimentare durante il mio percorso accademico e le mie esperienze lavorative ed extracurriculari.
                             </p>
                         </blockquote>
