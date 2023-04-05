@@ -27,3 +27,29 @@ html {
     color: #F3EFF2 !important;
     background-color: #4E3A4A !important;
 }
+
+/* SCROLLBAR */
+@media (min-width: 768px) {
+    * {
+        scrollbar-height: auto;
+        scrollbar-width: auto;
+    }
+
+    * {
+        scrollbar-color: #091314 #93aca4 ;
+    }
+
+    ::-webkit-scrollbar {
+        height: 13px;
+        width: 13px;
+    }
+    ::-webkit-scrollbar-track {
+        @apply bg-green_giorgia-300;
+    }
+    ::-webkit-scrollbar-thumb {
+        border-radius: 0px;
+    }
+    ::-webkit-scrollbar-thumb {
+        @apply bg-green_giorgia-800;
+    }
+}

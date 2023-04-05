@@ -26,19 +26,23 @@ COMANDI
 
 
 DA FARE
+    +fare footer
+    +far funzionare menu in testa - categorie portoflio
+    +testare da telefono parte contatti (che il bottone telefono invece di copiare il numero apra l'app telefono?)
+    +link gdrive
+    +progetti con file unico pdf aprire direttamente
+    +progetti con video aprire direttamente yourtube/vimeo
+    +stile scrollbar
+    +errore firefox
+    +accendere bottone quando in relativa categoria (funzione c'è ma rotta)
+    +fermare navigatore un po' prima del fondo sezione
+
     -sistemare navigatore categorie portfolio
-    -errore firefox
-    -accendere bottone quando in relativa categoria (funzione c'è ma rotta)
-    -fermare navigatore un po' prima del fondo sezione
     -farlo per mobile? fisso in testa
     -da telefono aprire video youtube da app
     -ridimensionare size immagini
     -lazy loading immagini
-    -link gdrive
-    -progetti con file unico pdf aprire direttamente
-    -progetti con video aprire direttamente yourtube/vimeo
     -rimuovere font non usati
     -menu sotto categorie profilo?
     -rimpicciolire riquadro contact me
     -aggoipranre favicon
-    -stile scrollbar

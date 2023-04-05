@@ -9,31 +9,14 @@
             </div>
         </GiorgiaModal>
 
-        <!-- <iframe
-            v-if="showVideoPlayer && videoPlayerUrl"
-            id="player"
-            type="text/html"
-            width="640"
-            height="360"
-            :src="videoPlayerUrl"
-            frameborder="0"
-        ></iframe> -->
-        <!-- <iframe
-            id="player"
-            type="text/html"
-            width="640"
-            height="360"
-            src="http://youtu.be/MPr4v-aY4d8"
-            frameborder="0"
-        ></iframe> -->
-
         <SectionHeader initial="P" text="Portfolio" :spaced-bottom="true" />
 
         <div class="flex w-full flex-col bg-green_giorgia-50 pt-20 lg:pt-36">
             <div class="mx-auto flex max-w-7xl space-y-10 lg:px-8">
                 <div class="flex flex-grow flex-col">
                     <!-- CATEGORY LIST -->
-                    <div v-for="(c, iC) in categories" :key="iC" class="w-full pb-4 pt-4 lg:pb-20" :id="'category_' + c.id">
+                    <div v-for="(c, iC) in categories" :key="iC" class="w-full pb-4 pt-4 lg:pb-20"
+                        :id="'portfolio_category_' + c.id" ref="portfolioCategoriesRef">
                         <div class="flex w-full px-4 pb-2 lg:-mb-9 lg:justify-end lg:px-0 lg:pb-0">
                             <div
                                 class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600 lg:bg-gradient-to-b lg:from-purple_giorgia-500 lg:from-62 lg:to-purple_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent">
@@ -143,11 +126,12 @@
                 </div>
 
                 <!-- CATEGORY MENU (ONLY DESKTOP) -->
-                <div class="hidden pt-9 lg:block">
-                    <div class="sticky top-0 -ml-px border-l border-r border-t border-green_giorgia-200">
+                <div class="hidden pt-9 lg:block !mb-36">
+                    <div class="sticky top-0 -ml-px border-l border-r border-t border-green_giorgia-200"
+                        style="width: 48px;">
                         <div v-for="(c, iC) in categories" :key="iC"
                             class="cursor-pointer border-b border-green_giorgia-200 px-3 py-6 font-extralight uppercase text-green_giorgia-600 transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100"
-                            @click="scrollToCategory(c.id)" :class="isCategoryActive(c.id) ? 'bg-green_giorgia-200' : ''"
+                            @click="scrollToCategory(c.id)" :class="c.isActive ? 'bg-green_giorgia-200' : ''"
                             style="writing-mode: vertical-rl">
                             {{ c.description }}
                         </div>
@@ -163,6 +147,8 @@ import SectionHeader from "@/components/SectionHeader.vue";
 import { useThemes } from "@/store";
 import { Ref, onMounted, onUnmounted, ref } from "vue";
 import GiorgiaModal from "@/components/GiorgiaModal.vue";
+import { watchDebounced } from '@vueuse/core';
+import { useElementVisibility } from '@vueuse/core';
 
 export type PortfolioSection = {
     title: string;
@@ -184,8 +170,8 @@ const enum CategoryType {
     video,
     photoediting,
 }
+
 const showVideoPlayer = ref(false);
-const videoPlayerUrl: Ref<string | null> = ref(null);
 const youtubeConfig = {
     height: '100%',
     width: '100%',
@@ -201,17 +187,7 @@ onMounted(() => {
     const firstScriptTag = document.getElementsByTagName('script')[0];
     firstScriptTag!.parentNode!.insertBefore(tag, firstScriptTag);
 });
-
-// (window as any).onYouTubeIframeAPIReady = () => {
-//     initYoutube();
-// };
 let player: YT.Player | null = null;
-// function initYoutube() {
-//     player = new YT.Player('youtubePlayer', {
-//         ...youtubeConfig,
-//         videoId: 'M7lc1UVf-VE',
-//     });
-// }
 
 const themesStore = useThemes();
 
@@ -244,12 +220,13 @@ const photoEditing2Description = `Lorem ipsum dolor sit amet, consectetur adipis
 const photoEditing3Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
 const photoEditing4Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
 
-const categories: { id: CategoryType; description: string }[] = [
-    { id: CategoryType.set_design, description: "Set design" },
-    { id: CategoryType.photography, description: "Fotografia" },
-    { id: CategoryType.video, description: "Video" },
-    { id: CategoryType.photoediting, description: "Photo editing" },
-];
+const portfolioCategoriesRef = ref([]);
+const categories: Ref<{ id: CategoryType; description: string, isActive: boolean }[]> = ref([
+    { id: CategoryType.set_design, description: "Set design", isActive: false },
+    { id: CategoryType.photography, description: "Fotografia", isActive: false },
+    { id: CategoryType.video, description: "Video", isActive: false },
+    { id: CategoryType.photoediting, description: "Photo editing", isActive: false },
+]);
 
 const sections: PortfolioSection[] = [
     {
@@ -468,20 +445,12 @@ const sections: PortfolioSection[] = [
     },
 ];
 
-function scrollToCategory(categoryId: number) {
-    const categoryElement = document.getElementById("category_" + categoryId);
+
+async function scrollToCategory(categoryId: number) {
+    const categoryElement = document.getElementById("portfolio_category_" + categoryId);
     if (categoryElement) {
         categoryElement.scrollIntoView({ behavior: "smooth" });
     }
-}
-
-function isCategoryActive(categoryId: number) {
-    const categoryElement = document.getElementById("category_" + categoryId);
-    if (categoryElement) {
-        const rect = categoryElement.getBoundingClientRect();
-        return rect.top >= 0 && rect.bottom <= window.innerHeight;
-    }
-    return false;
 }
 
 function onButtonClick(curSection: PortfolioSection) {
@@ -519,7 +488,7 @@ function openYoutube(videoId: string) {
 }
 
 // function updateCategoryActive() {
-//     const categories = document.getElementsByClassName('category');
+//     const categories = document.getElementsByClassName('portfolio_category');
 //     for (let i = 0; i < categories.length; i++) {
 //         const category = categories[i];
 //         const id = parseInt(category.getAttribute('data-id') || '0');
@@ -531,7 +500,44 @@ function openYoutube(videoId: string) {
 //     }
 // }
 
-// window.addEventListener('scroll', updateCategoryActive);
+window.addEventListener('scroll', updateScrollPosition);
+const scrollPosition = ref(0);
+function updateScrollPosition() {
+    scrollPosition.value = window.scrollY;
+}
+
+watchDebounced(
+    () => scrollPosition.value,
+    () => {
+        checkCategoryActive();
+    },
+    { debounce: 100 },
+);
+
+
+function isCategoryActive(categoryIndex: number): boolean {
+    if (portfolioCategoriesRef.value && portfolioCategoriesRef.value.length > 0 && portfolioCategoriesRef.value[categoryIndex]) {
+        const isVisible = useElementVisibility(portfolioCategoriesRef.value[categoryIndex]);
+        return isVisible.value;
+    } else {
+        return false;
+    }
+}
+
+function checkCategoryActive() {
+    categories.value.forEach((category, index) => {
+        // if (isCategoryActive(index) && ((index === 0) || (index > 0 && !categories.value[index - 1].isActive))) {
+        if (isCategoryActive(index)) {
+            categories.value[index].isActive = true;
+            for (let i = 0; i < index; i++) {
+                categories.value[i].isActive = false;
+            }
+        } else {
+            categories.value[index].isActive = false;
+        }
+    });
+}
+
 </script>
 
 <style lang="scss"></style>
