@@ -9,8 +9,8 @@
                 <!-- IMAGE -->
                 <div class="-mt-8 w-full max-w-2xl xl:-mb-8 xl:w-96 xl:flex-none">
                     <div class="relative aspect-[2/1] h-full md:-mx-8 xl:mx-0 xl:aspect-auto landing-about-me-photo">
-                        <img class="absolute inset-0 h-full w-full bg-gray-800 object-cover shadow-2xl landing-about-me-photo"
-                            src="@/assets/images/about_me_red.jpg" alt="">
+                        <img loading="lazy" class="absolute inset-0 h-full w-full bg-gray-800 object-cover shadow-2xl landing-about-me-photo"
+                            src="@/assets/images/about_me_resized.jpg" alt="">
                     </div>
                 </div>
 

@@ -36,13 +36,15 @@ DA FARE
     +errore firefox
     +accendere bottone quando in relativa categoria (funzione c'è ma rotta)
     +fermare navigatore un po' prima del fondo sezione
+    +aggoipranre favicon
+    +da telefono aprire video youtube da app
+    +ridimensionare size immagini
+    +rimuovere font non usati
+    +menu sotto categorie profilo: non serve, sottomenu già presente nella categoria per mobiel e non
+    +lazy loading immagini
+    +rimpicciolire riquadro contact me
+    +tasto per andare su
+    +rifare menu mobile che fa schuifo
 
     -sistemare navigatore categorie portfolio
-    -farlo per mobile? fisso in testa
-    -da telefono aprire video youtube da app
-    -ridimensionare size immagini
-    -lazy loading immagini
-    -rimuovere font non usati
-    -menu sotto categorie profilo?
-    -rimpicciolire riquadro contact me
-    -aggoipranre favicon
+    -farlo per mobile? fisso in testa che scende a mò di dropdown

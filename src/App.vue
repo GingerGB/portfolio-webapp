@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-green_giorgia-200" ref="appContainer">
+    <div class="bg-green_giorgia-200 w-full h-full" ref="appContainer">
         <router-view name="default" />
         <router-view name="body" />
     </div>

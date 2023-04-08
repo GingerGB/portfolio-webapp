@@ -9,23 +9,8 @@ const router = createRouter({
             path: '/',
             name: 'home',
             components: {
-                default: () => import('./views/header/index.vue'),
                 body: () => import('./views/presentation/index.vue')
             }
-        },
-
-        // PORTFOLIO
-        {
-            path: '/portfolio',
-            name: 'portfolio',
-            components: {
-                default: () => import('./views/header/index.vue'),
-                body: () => import('./views/presentation/index.vue')
-            },
-            meta: {
-                requiresAuth: true,
-                inventory: true
-            },
         },
 
         // REDIRECTS
@@ -33,7 +18,6 @@ const router = createRouter({
             path: '/:pathMatch(.*)*',
             name: 'not-found',
             components: {
-                default: () => import('./views/header/index.vue'),
                 body: () => import('./views/errors/notFound.vue')
             }
         },

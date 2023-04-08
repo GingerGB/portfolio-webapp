@@ -5,7 +5,7 @@
         <div class="bg-green_giorgia-50 lg:py-16 sm:py-24">
             <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div
-                    class="relative isolate overflow-hidden px-6 py-24 shadow-2xl sm:px-24 xl:py-32 bg-gradient-to-b from-green_giorgia-800 from-10%a to-green_giorgia-700">
+                    class="relative isolate overflow-hidden px-6 pt-20 pb-12 shadow-2xl sm:px-24 xl:pt-16 xl:pb-12 bg-gradient-to-b from-green_giorgia-800 from-10%a to-green_giorgia-700">
                     <h2
                         class="mx-auto max-w-2xl text-center text-5xl font-bold tracking-tight text-white sm:text-6xl font-serif pb-8">
                         Ti piace quello che hai visto?</h2>

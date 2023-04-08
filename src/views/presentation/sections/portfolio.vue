@@ -1,122 +1,188 @@
 <template>
     <div class="relative bg-green_giorgia-200 pt-32 lg:pt-52">
-
         <!-- YOUTUBE MODAL -->
-        <GiorgiaModal :is-open="showVideoPlayer" hide-footer no-padding is-scrollable @close="showVideoPlayer = false"
-            modal-class="w-11/12 lg:w-11/12 xl:w-11/12 2xl:w-11/12">
-            <div class="w-full h-full">
+        <GiorgiaModal
+            :is-open="showVideoPlayer"
+            hide-footer
+            no-padding
+            is-scrollable
+            @close="showVideoPlayer = false"
+            modal-class="w-11/12 lg:w-11/12 xl:w-11/12 2xl:w-11/12"
+        >
+            <div class="h-full w-full">
                 <div id="youtubePlayer"></div>
             </div>
         </GiorgiaModal>
 
         <SectionHeader initial="P" text="Portfolio" :spaced-bottom="true" />
 
-        <div class="flex w-full flex-col bg-green_giorgia-50 pt-20 lg:pt-36">
+        <div class="flex w-full flex-col bg-green_giorgia-50 pt-12 lg:pt-20">
             <div class="mx-auto flex max-w-7xl space-y-10 lg:px-8">
                 <div class="flex flex-grow flex-col">
                     <!-- CATEGORY LIST -->
-                    <div v-for="(c, iC) in categories" :key="iC" class="w-full pb-4 pt-4 lg:pb-20"
-                        :id="'portfolio_category_' + c.id" ref="portfolioCategoriesRef">
+                    <div
+                        v-for="(c, iC) in categories"
+                        :key="iC"
+                        class="w-full pb-4 pt-4 lg:pb-20"
+                        :id="'portfolio_category_' + c.id"
+                        ref="portfolioCategoriesRef"
+                    >
                         <div class="flex w-full px-4 pb-2 lg:-mb-9 lg:justify-end lg:px-0 lg:pb-0">
                             <div
-                                class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600 lg:bg-gradient-to-b lg:from-purple_giorgia-500 lg:from-62 lg:to-purple_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent">
+                                class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600 lg:bg-gradient-to-b lg:from-purple_giorgia-500 lg:from-62 lg:to-purple_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent"
+                            >
                                 {{ iC + 1 }}
                             </div>
                             <div
-                                class="font-serif text-4xl font-bold uppercase tracking-widest text-green_giorgia-600 lg:bg-gradient-to-b lg:from-green_giorgia-500 lg:from-62 lg:to-green_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent">
+                                class="font-serif text-4xl font-bold uppercase tracking-widest text-green_giorgia-600 lg:bg-gradient-to-b lg:from-green_giorgia-500 lg:from-62 lg:to-green_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent"
+                            >
                                 {{ c.description }}
                             </div>
                         </div>
 
                         <!-- SECTION LIST -->
-                        <div v-for="(s, i) in sections.filter((s) => s.category == c.id)" :key="i"
-                            class="relative mb-8 flex w-full flex-col border-green_giorgia-200 lg:mb-16 lg:border">
+                        <div
+                            v-for="(s, i) in sections.filter((s) => s.category == c.id)"
+                            :key="i"
+                            class="relative mb-8 flex w-full flex-col border-green_giorgia-200 lg:mb-16 lg:border"
+                        >
                             <div class="flex w-full flex-col items-center px-4 py-8 lg:flex-row lg:px-8 lg:pt-12">
                                 <!-- IMAGE EVEN -->
-                                <div v-if="i & 1 && !themesStore.isMD && !themesStore.isSM"
-                                    class="-ml-8 flex flex-shrink-0 pr-16">
+                                <div
+                                    v-if="i & 1 && !themesStore.isMD && !themesStore.isSM"
+                                    class="-ml-8 flex flex-shrink-0 pr-16"
+                                >
                                     <div class="relative bg-green_giorgia-100 pr-10 pt-10">
                                         <div
-                                            class="flex justify-end space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
+                                            class="flex justify-end space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5"
+                                        >
                                             <div v-for="(p, iP) in s.programs" class="">
-                                                <img :src="`/src/assets/images/programs/${p.image}.svg`" class="h-8 w-6"
-                                                    v-fbr-tooltip="p.description" />
+                                                <img
+                                                    loading="lazy"
+                                                    :src="`/src/assets/images/programs/${p.image}.svg`"
+                                                    class="h-8 w-6"
+                                                    v-fbr-tooltip="p.description"
+                                                />
                                             </div>
                                         </div>
                                         <div class="relative">
-                                            <div v-if="s.image === 'goat_island.png'"
-                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
-                                            <img :src="`/src/assets/images/portfolio/${s.image}`"
-                                                class="w-full bg-purple_giorgia-500 object-cover" :class="s.imageClasses"
-                                                :style="s.imageStyles" />
+                                            <div
+                                                v-if="s.image === 'goat_island.png'"
+                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"
+                                            ></div>
+                                            <img
+                                                loading="lazy"
+                                                :src="`/src/assets/images/portfolio/${s.image}`"
+                                                class="w-full bg-purple_giorgia-500 object-cover"
+                                                :class="s.imageClasses"
+                                                :style="s.imageStyles"
+                                            />
                                         </div>
                                     </div>
                                 </div>
                                 <div class="flex flex-grow flex-col">
                                     <!-- TITLE -->
                                     <div
-                                        class="pb-4 font-serif text-4xl font-semibold text-purple_giorgia-700 lg:pb-10 lg:text-5xl">
+                                        class="pb-4 font-serif text-4xl font-semibold text-purple_giorgia-700 lg:pb-10 lg:text-5xl"
+                                    >
                                         {{ s.title }}
                                     </div>
                                     <div class="flex flex-wrap items-center space-x-2 lg:pb-6">
-                                        <div v-for="t in s.tags" :key="t"
-                                            class="mt-2 bg-green_giorgia-200 px-3 py-2 text-xs font-medium uppercase tracking-wider text-green_giorgia-700 lg:mt-0">
+                                        <div
+                                            v-for="t in s.tags"
+                                            :key="t"
+                                            class="mt-2 bg-green_giorgia-200 px-3 py-2 text-xs font-medium uppercase tracking-wider text-green_giorgia-700 lg:mt-0"
+                                        >
                                             {{ t }}
                                         </div>
                                     </div>
 
                                     <!-- IMAGE MOBILE -->
-                                    <div v-if="themesStore.isMD || themesStore.isSM"
-                                        class="mx-auto mb-10 mt-4 flex flex-shrink-0">
+                                    <div
+                                        v-if="themesStore.isMD || themesStore.isSM"
+                                        class="mx-auto mb-10 mt-4 flex flex-shrink-0"
+                                    >
                                         <div class="relative">
                                             <div class="flex space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
                                                 <div v-for="(p, iP) in s.programs" class="">
-                                                    <img :src="`/src/assets/images/programs/${p.image}.svg`" class="h-8 w-6"
-                                                        v-fbr-tooltip="p.description" />
+                                                    <img
+                                                        loading="lazy"
+                                                        :src="`/src/assets/images/programs/${p.image}.svg`"
+                                                        class="h-8 w-6"
+                                                        v-fbr-tooltip="p.description"
+                                                    />
                                                 </div>
                                             </div>
                                             <div class="relative">
-                                                <div v-if="s.image === 'goat_island.png'"
-                                                    class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
-                                                <img :src="`/src/assets/images/portfolio/${s.image}`"
+                                                <div
+                                                    v-if="s.image === 'goat_island.png'"
+                                                    class="absolute inset-0 bg-gray-200 mix-blend-multiply"
+                                                ></div>
+                                                <img
+                                                    loading="lazy"
+                                                    :src="`/src/assets/images/portfolio/${s.image}`"
                                                     class="w-full bg-purple_giorgia-500 object-cover"
-                                                    :class="s.imageClasses" :style="s.imageStyles" />
+                                                    :class="s.imageClasses"
+                                                    :style="s.imageStyles"
+                                                />
                                             </div>
                                         </div>
                                     </div>
 
                                     <!-- DESCRIPTION -->
-                                    <div v-html="s.description"
-                                        class="text-sm font-light text-green_giorgia-700 xl:text-base"></div>
+                                    <div
+                                        v-html="s.description"
+                                        class="text-sm font-light text-green_giorgia-700 xl:text-base"
+                                    ></div>
                                     <!-- BUTTON -->
                                     <div class="mt-8 flex items-center gap-x-6">
-                                        <button v-if="s.isButton" type="button" @click="onButtonClick(s)"
-                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 focus:outline-none focus:bg-purple_giorgia-800 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 lg:w-auto lg:py-3 lg:text-left">
+                                        <button
+                                            v-if="s.isButton"
+                                            type="button"
+                                            @click="onButtonClick(s)"
+                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 focus:bg-purple_giorgia-800 focus:outline-none lg:w-auto lg:py-3 lg:text-left"
+                                        >
                                             Visualizza progetto
                                         </button>
-                                        <a v-if="!s.isButton && s.url" :href="s.url" target="_blank"
-                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 focus:outline-none focus:bg-purple_giorgia-800 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 lg:w-auto lg:py-3 lg:text-left">
+                                        <a
+                                            v-if="!s.isButton && s.url"
+                                            :href="s.url"
+                                            target="_blank"
+                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 focus:bg-purple_giorgia-800 focus:outline-none lg:w-auto lg:py-3 lg:text-left"
+                                        >
                                             Visualizza progetto
                                         </a>
                                     </div>
                                 </div>
 
                                 <!-- IMAGE ODD -->
-                                <div v-if="!(i & 1) && !themesStore.isMD && !themesStore.isSM"
-                                    class="-mr-8 flex flex-shrink-0 pl-16">
+                                <div
+                                    v-if="!(i & 1) && !themesStore.isMD && !themesStore.isSM"
+                                    class="-mr-8 flex flex-shrink-0 pl-16"
+                                >
                                     <div class="relative bg-green_giorgia-100 pl-10 pt-10">
                                         <div class="flex space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
                                             <div v-for="(p, iP) in s.programs" class="">
-                                                <img :src="`/src/assets/images/programs/${p.image}.svg`" class="h-6 w-6"
-                                                    v-fbr-tooltip="p.description" />
+                                                <img
+                                                    loading="lazy"
+                                                    :src="`/src/assets/images/programs/${p.image}.svg`"
+                                                    class="h-6 w-6"
+                                                    v-fbr-tooltip="p.description"
+                                                />
                                             </div>
                                         </div>
                                         <div class="relative">
-                                            <div v-if="s.image === 'goat_island.png'"
-                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"></div>
-                                            <img :src="`/src/assets/images/portfolio/${s.image}`"
-                                                class="w-full bg-purple_giorgia-500 object-cover" :class="s.imageClasses"
-                                                :style="s.imageStyles" />
+                                            <div
+                                                v-if="s.image === 'goat_island.png'"
+                                                class="absolute inset-0 bg-gray-200 mix-blend-multiply"
+                                            ></div>
+                                            <img
+                                                loading="lazy"
+                                                :src="`/src/assets/images/portfolio/${s.image}`"
+                                                class="w-full bg-purple_giorgia-500 object-cover"
+                                                :class="s.imageClasses"
+                                                :style="s.imageStyles"
+                                            />
                                         </div>
                                     </div>
                                 </div>
@@ -126,13 +192,19 @@
                 </div>
 
                 <!-- CATEGORY MENU (ONLY DESKTOP) -->
-                <div class="hidden pt-9 lg:block !mb-36">
-                    <div class="sticky top-0 -ml-px border-l border-r border-t border-green_giorgia-200"
-                        style="width: 48px;">
-                        <div v-for="(c, iC) in categories" :key="iC"
+                <div class="!mb-36 hidden pt-9 lg:block">
+                    <div
+                        class="sticky top-0 -ml-px border-l border-r border-t border-green_giorgia-200"
+                        style="width: 48px"
+                    >
+                        <div
+                            v-for="(c, iC) in categories"
+                            :key="iC"
                             class="cursor-pointer border-b border-green_giorgia-200 px-3 py-6 font-extralight uppercase text-green_giorgia-600 transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100"
-                            @click="scrollToCategory(c.id)" :class="c.isActive ? 'bg-green_giorgia-200' : ''"
-                            style="writing-mode: vertical-rl">
+                            @click="scrollToCategory(c.id)"
+                            :class="c.isActive ? 'bg-green_giorgia-200' : ''"
+                            style="writing-mode: vertical-rl"
+                        >
                             {{ c.description }}
                         </div>
                     </div>
@@ -147,8 +219,8 @@ import SectionHeader from "@/components/SectionHeader.vue";
 import { useThemes } from "@/store";
 import { Ref, onMounted, onUnmounted, ref } from "vue";
 import GiorgiaModal from "@/components/GiorgiaModal.vue";
-import { watchDebounced } from '@vueuse/core';
-import { useElementVisibility } from '@vueuse/core';
+import { watchDebounced } from "@vueuse/core";
+import { useElementVisibility } from "@vueuse/core";
 
 export type PortfolioSection = {
     title: string;
@@ -173,18 +245,18 @@ const enum CategoryType {
 
 const showVideoPlayer = ref(false);
 const youtubeConfig = {
-    height: '100%',
-    width: '100%',
+    height: "100%",
+    width: "100%",
     playerVars: {
-        'playsinline': 1
+        playsinline: 1,
     },
 };
 
 onMounted(() => {
     // initialize youtube player
-    const tag = document.createElement('script');
+    const tag = document.createElement("script");
     tag.src = "https://www.youtube.com/iframe_api";
-    const firstScriptTag = document.getElementsByTagName('script')[0];
+    const firstScriptTag = document.getElementsByTagName("script")[0];
     firstScriptTag!.parentNode!.insertBefore(tag, firstScriptTag);
 });
 let player: YT.Player | null = null;
@@ -221,12 +293,14 @@ const photoEditing3Description = `Lorem ipsum dolor sit amet, consectetur adipis
 const photoEditing4Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
 
 const portfolioCategoriesRef = ref([]);
-const categories: Ref<{ id: CategoryType; description: string, isActive: boolean }[]> = ref([
+const categories: Ref<{ id: CategoryType; description: string; isActive: boolean }[]> = ref([
     { id: CategoryType.set_design, description: "Set design", isActive: false },
     { id: CategoryType.photography, description: "Fotografia", isActive: false },
     { id: CategoryType.video, description: "Video", isActive: false },
-    { id: CategoryType.photoediting, description: "Photo editing", isActive: false },
 ]);
+
+
+// { id: CategoryType.photoediting, description: "Photo editing", isActive: false },
 
 const sections: PortfolioSection[] = [
     {
@@ -240,7 +314,7 @@ const sections: PortfolioSection[] = [
             { image: "illustrator", description: "Illustrator" },
             { image: "indesign", description: "InDesign" },
         ],
-        image: "sangue_1.jpg",
+        image: "sangue_resized.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;",
         isButton: false,
@@ -256,7 +330,7 @@ const sections: PortfolioSection[] = [
             { image: "photoshop", description: "Photoshop" },
             { image: "illustrator", description: "Illustrator" },
         ],
-        image: "magickland.jpg",
+        image: "magickland_resized.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;",
         isButton: false,
@@ -274,7 +348,7 @@ const sections: PortfolioSection[] = [
             { image: "photoshop", description: "Photoshop" },
             { image: "illustrator", description: "Illustrator" },
         ],
-        image: "ulisse.jpg",
+        image: "ulisse_resized.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 80%;",
         isButton: false,
@@ -290,7 +364,7 @@ const sections: PortfolioSection[] = [
             { image: "photoshop", description: "Photoshop" },
             { image: "illustrator", description: "Illustrator" },
         ],
-        image: "goat_island.png",
+        image: "goat_island_resized.png",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;",
         isButton: false,
@@ -305,7 +379,7 @@ const sections: PortfolioSection[] = [
             { image: "lightroom", description: "Lightroom" },
             { image: "photoshop", description: "Photoshop" },
         ],
-        image: "daniela_kevin.jpg",
+        image: "daniela_kevin_resized.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;",
         isButton: false,
@@ -317,7 +391,7 @@ const sections: PortfolioSection[] = [
         description: hekateDescription,
         tags: ["fotografia", "photo editing"],
         programs: [{ image: "photoshop", description: "Photoshop" }],
-        image: "hekate.jpg",
+        image: "hekate_resized.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 65%;",
         isButton: false,
@@ -332,7 +406,7 @@ const sections: PortfolioSection[] = [
             { image: "photoshop", description: "Photoshop" },
             { image: "indesign", description: "InDesign" },
         ],
-        image: "urban_memories_3.png",
+        image: "urban_memories_resized.png",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 15%;",
         isButton: false,
@@ -347,7 +421,7 @@ const sections: PortfolioSection[] = [
             { image: "lightroom", description: "Lightroom" },
             { image: "photoshop", description: "Photoshop" },
         ],
-        image: "photographic_collection.jpg",
+        image: "photographic_collection_resized.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;",
         isButton: false,
@@ -362,7 +436,7 @@ const sections: PortfolioSection[] = [
             { image: "premiere", description: "Premiere" },
             { image: "audition", description: "Audition" },
         ],
-        image: "no_place_like_home.png",
+        image: "no_place_like_home_resized.png",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 40%;",
         isButton: true,
@@ -378,7 +452,7 @@ const sections: PortfolioSection[] = [
             { image: "after_effects", description: "After Effects" },
             { image: "audition", description: "Audition" },
         ],
-        image: "scandalo_vs_daniel_masters.png",
+        image: "scandalo_vs_daniel_masters_resized.png",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 20%;",
         isButton: true,
@@ -399,52 +473,52 @@ const sections: PortfolioSection[] = [
         isButton: true,
         youtubeId: "RNSKAoiSGQM",
     },
-    {
-        title: "Photo Editing 1",
-        category: CategoryType.photoediting,
-        description: photoEditing1Description,
-        tags: ["photo editing", "fotomanipolazione"],
-        programs: [{ image: "photoshop", description: "Photoshop" }],
-        image: "photo_editing_1.jpg",
-        imageClasses: "lg:h-72",
-        imageStyles: "aspect-ratio: 16/9;",
-        isButton: false,
-    },
-    {
-        title: "Photo Editing 2",
-        category: CategoryType.photoediting,
-        description: photoEditing2Description,
-        tags: ["photo editing", "fotomanipolazione"],
-        programs: [{ image: "photoshop", description: "Photoshop" }],
-        image: "photo_editing_2.jpg",
-        imageClasses: "lg:h-72",
-        imageStyles: "aspect-ratio: 16/9;",
-        isButton: false,
-    },
-    {
-        title: "Photo Editing 3",
-        category: CategoryType.photoediting,
-        description: photoEditing3Description,
-        tags: ["photo editing", "fotomanipolazione"],
-        programs: [{ image: "photoshop", description: "Photoshop" }],
-        image: "photo_editing_3.jpg",
-        imageClasses: "lg:h-72",
-        imageStyles: "aspect-ratio: 16/9;",
-        isButton: false,
-    },
-    {
-        title: "Photo Editing 4",
-        category: CategoryType.photoediting,
-        description: photoEditing4Description,
-        tags: ["photo editing", "fotomanipolazione"],
-        programs: [{ image: "photoshop", description: "Photoshop" }],
-        image: "photo_editing_4.jpg",
-        imageClasses: "lg:h-72",
-        imageStyles: "aspect-ratio: 16/9;",
-        isButton: false,
-    },
 ];
 
+// {
+//         title: "Photo Editing 1",
+//         category: CategoryType.photoediting,
+//         description: photoEditing1Description,
+//         tags: ["photo editing", "fotomanipolazione"],
+//         programs: [{ image: "photoshop", description: "Photoshop" }],
+//         image: "photo_editing_1_resized.jpg",
+//         imageClasses: "lg:h-72",
+//         imageStyles: "aspect-ratio: 16/9;",
+//         isButton: false,
+//     },
+//     {
+//         title: "Photo Editing 2",
+//         category: CategoryType.photoediting,
+//         description: photoEditing2Description,
+//         tags: ["photo editing", "fotomanipolazione"],
+//         programs: [{ image: "photoshop", description: "Photoshop" }],
+//         image: "photo_editing_2_resized.jpg",
+//         imageClasses: "lg:h-72",
+//         imageStyles: "aspect-ratio: 16/9;",
+//         isButton: false,
+//     },
+//     {
+//         title: "Photo Editing 3",
+//         category: CategoryType.photoediting,
+//         description: photoEditing3Description,
+//         tags: ["photo editing", "fotomanipolazione"],
+//         programs: [{ image: "photoshop", description: "Photoshop" }],
+//         image: "photo_editing_3_resized.jpg",
+//         imageClasses: "lg:h-72",
+//         imageStyles: "aspect-ratio: 16/9;",
+//         isButton: false,
+//     },
+//     {
+//         title: "Photo Editing 4",
+//         category: CategoryType.photoediting,
+//         description: photoEditing4Description,
+//         tags: ["photo editing", "fotomanipolazione"],
+//         programs: [{ image: "photoshop", description: "Photoshop" }],
+//         image: "photo_editing_4_resized.jpg",
+//         imageClasses: "lg:h-72",
+//         imageStyles: "aspect-ratio: 16/9;",
+//         isButton: false,
+//     },
 
 async function scrollToCategory(categoryId: number) {
     const categoryElement = document.getElementById("portfolio_category_" + categoryId);
@@ -470,37 +544,22 @@ function onButtonClick(curSection: PortfolioSection) {
 }
 
 function openYoutube(videoId: string) {
-    showVideoPlayer.value = true;
-    setTimeout(() => {
-        player = new YT.Player('youtubePlayer', {
-            ...youtubeConfig,
-            videoId: videoId,
-        });
-    }, 1000);
-    // if (!player) {
-    //     player = new YT.Player('youtubePlayer', {
-    //         ...youtubeConfig,
-    //         videoId: videoId,
-    //     });
-    // } else {
-    //     player.cueVideoById(videoId);
-    // }
+    if (!themesStore.isMD && !themesStore.isSM) {
+        // if desktop open inside modal
+        showVideoPlayer.value = true;
+        setTimeout(() => {
+            player = new YT.Player("youtubePlayer", {
+                ...youtubeConfig,
+                videoId: videoId,
+            });
+        }, 1000);
+    } else {
+        // if mobile try to open youtube app
+        window.open("vnd.youtube://" + videoId, "_blank");
+    }
 }
 
-// function updateCategoryActive() {
-//     const categories = document.getElementsByClassName('portfolio_category');
-//     for (let i = 0; i < categories.length; i++) {
-//         const category = categories[i];
-//         const id = parseInt(category.getAttribute('data-id') || '0');
-//         if (isCategoryActive(id)) {
-//             category.classList.add('active');
-//         } else {
-//             category.classList.remove('active');
-//         }
-//     }
-// }
-
-window.addEventListener('scroll', updateScrollPosition);
+window.addEventListener("scroll", updateScrollPosition);
 const scrollPosition = ref(0);
 function updateScrollPosition() {
     scrollPosition.value = window.scrollY;
@@ -511,12 +570,15 @@ watchDebounced(
     () => {
         checkCategoryActive();
     },
-    { debounce: 100 },
+    { debounce: 100 }
 );
 
-
 function isCategoryActive(categoryIndex: number): boolean {
-    if (portfolioCategoriesRef.value && portfolioCategoriesRef.value.length > 0 && portfolioCategoriesRef.value[categoryIndex]) {
+    if (
+        portfolioCategoriesRef.value &&
+        portfolioCategoriesRef.value.length > 0 &&
+        portfolioCategoriesRef.value[categoryIndex]
+    ) {
         const isVisible = useElementVisibility(portfolioCategoriesRef.value[categoryIndex]);
         return isVisible.value;
     } else {
@@ -526,7 +588,6 @@ function isCategoryActive(categoryIndex: number): boolean {
 
 function checkCategoryActive() {
     categories.value.forEach((category, index) => {
-        // if (isCategoryActive(index) && ((index === 0) || (index > 0 && !categories.value[index - 1].isActive))) {
         if (isCategoryActive(index)) {
             categories.value[index].isActive = true;
             for (let i = 0; i < index; i++) {
@@ -537,7 +598,6 @@ function checkCategoryActive() {
         }
     });
 }
-
 </script>
 
 <style lang="scss"></style>

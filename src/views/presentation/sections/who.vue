@@ -16,12 +16,6 @@
 
                                 <!-- ICON -->
                                 <div class="flex justify-center pb-16">
-                                    <!-- <BrandIcon size="180px" /> -->
-                                    <!-- <BrandIconNew size="220px" /> -->
-                                    <!-- <div class="flex items-center justify-center rounded-full bg-green_giorgia-600"
-                                        style="width: 260px; height: 260px;">
-                                        <BrandIconNew size="180px"/>
-                                    </div> -->
                                     <BrandIconMoonNew size="180px"/>
                                 </div>
 
@@ -47,7 +41,7 @@
                 <!-- IMAGE -->
                 <div class="bg-green_giorgia-100 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
                     <img class="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
-                        src="@/assets/images/splash_image_1.jpg" />
+                        src="@/assets/images/splash_image.jpg" />
                 </div>
             </div>
         </div>
@@ -55,17 +49,12 @@
 </template>
 
 <script setup lang="ts">
-// import BrandIcon from '@/components/icons/BrandIcon.vue';
-// import BrandIconNew from '@/components/icons/BrandIconNew.vue';
-// import BrandIconMoon from '@/components/icons/BrandIconMoon.vue';
 import BrandIconMoonNew from '@/components/icons/BrandIconMoonNew.vue';
-
 </script>
 
 <style lang="scss">
 .landing-main-title {
-    @apply text-green_giorgia-300 font-serif;
-    font-weight: 500;
+    @apply text-green_giorgia-300 font-serif font-medium;
     padding-bottom: 30px;
 }
 
