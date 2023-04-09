@@ -32,7 +32,7 @@
                 <div class="flex items-center justify-between">
                     <button
                         type="button"
-                        class="-m-2.5 rounded-md p-2.5 text-green_giorgia-600 bg-green_giorgia-200"
+                        class="-m-2.5 rounded-md bg-green_giorgia-200 p-2.5 text-green_giorgia-600"
                         @click="mobileMenuOpen = false"
                     >
                         <span class="sr-only">Chiudi menu</span>
@@ -41,7 +41,7 @@
                 </div>
                 <div class="mt-6 flow-root">
                     <div class="-my-6 divide-y divide-gray-500/10">
-                        <div class="space-y-2 pt-12 pb-6">
+                        <div class="space-y-2 pb-6 pt-12">
                             <button
                                 v-for="item in navigation"
                                 :key="item.name"
@@ -57,6 +57,26 @@
             </DialogPanel>
         </Dialog>
     </header>
+
+    <!-- ARROW TO SCROLL TO TOP -->
+    <button
+        type="button"
+        class="fixed bottom-6 right-6 z-50 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-purple_giorgia-600 transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700"
+        @click="scrollToTop"
+        v-if="!themesStore.isMD && !themesStore.isSM && scrollOverFirstScreen"
+    >
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="svg-image stroked h-7 w-7 text-purple_giorgia-200"
+            style="margin-bottom: 3px"
+        >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 15.75l7.5-7.5 7.5 7.5" />
+        </svg>
+    </button>
 
     <section class="relative w-full xl:h-screen" id="who">
         <who />
@@ -98,6 +118,19 @@ const navigation = [
 ];
 
 const mobileMenuOpen = ref(false);
+
+const scrollOverFirstScreen = ref(false);
+window.addEventListener("scroll", () => {
+    if (window.pageYOffset > window.innerHeight) {
+        scrollOverFirstScreen.value = true;
+    } else {
+        scrollOverFirstScreen.value = false;
+    }
+});
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
 const scrollToSection = (sectionId: string) => {
     mobileMenuOpen.value = false;
