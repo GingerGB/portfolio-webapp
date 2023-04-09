@@ -16,18 +16,98 @@
 
         <SectionHeader initial="P" text="Portfolio" :spaced-bottom="true" />
 
+        <!-- MOBILE CATEGORY SELECTION -->
+        <Dialog as="div" class="lg:hidden" @close="showCategoryList = false" :open="showCategoryList">
+            <div class="fixed inset-0 z-50" />
+            <DialogPanel
+                class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gray-900 bg-opacity-70"
+                @click="showCategoryList = false"
+            >
+                <!-- <div class="flex items-center justify-between">
+                    <button
+                        type="button"
+                        class="-m-2.5 rounded-md bg-green_giorgia-200 p-2.5 text-green_giorgia-600"
+                        @click="showCategoryList = false"
+                    >
+                        <span class="sr-only">Chiudi menu</span>
+                        <XMarkIcon class="h-6 w-6" aria-hidden="true" />
+                    </button>
+                </div> -->
+                <div class="">
+                    <button
+                        v-for="(c, iC) in categories"
+                        :key="c.id"
+                        @click="
+                            showCategoryList = false;
+                            scrollToCategory(c.id);
+                        "
+                        type="button"
+                        class="flex h-16 w-full items-center border-b border-green_giorgia-200 bg-green_giorgia-50 px-4 py-2 outline-none transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100"
+                    >
+                        <div class="flex flex-grow">
+                            <div
+                                class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600"
+                            >
+                                {{ iC + 1 }}
+                            </div>
+                            <div
+                                class="font-serif text-4xl font-bold uppercase tracking-widest text-green_giorgia-600"
+                                style="font-size: 33px"
+                            >
+                                {{ c.description }}
+                            </div>
+                        </div>
+                    </button>
+                </div>
+            </DialogPanel>
+        </Dialog>
+
         <div class="flex w-full flex-col bg-green_giorgia-50 pt-12 lg:pt-20">
             <div class="mx-auto flex max-w-7xl space-y-10 lg:px-8">
                 <div class="flex flex-grow flex-col">
+                    <!-- MOBILE CATEGORY LIST BUTTON -->
+                    <button
+                        @click="toggleCategoryList"
+                        type="button"
+                        class="sticky top-0 z-10 flex lg:hidden h-16 w-full items-center border-b border-green_giorgia-200 bg-green_giorgia-50 px-4 outline-none transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100"
+                    >
+                        <div class="flex flex-grow">
+                            <div
+                                class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600"
+                            >
+                                {{ categories.findIndex((s) => s.id === curCategory?.id) + 1 }}
+                            </div>
+                            <div
+                                class="font-serif text-4xl font-bold uppercase tracking-widest text-green_giorgia-600"
+                                style="font-size: 33px"
+                            >
+                                {{ curCategory?.description }}
+                            </div>
+                        </div>
+                        <div class="flex h-full items-center">
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                fill="none"
+                                viewBox="0 0 24 24"
+                                stroke-width="1.5"
+                                stroke="currentColor"
+                                class="svg-image stroked h-5 w-5 text-purple_giorgia-600"
+                                style="margin-top: 3px"
+                            >
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                            </svg>
+                        </div>
+                    </button>
+
                     <!-- CATEGORY LIST -->
                     <div
                         v-for="(c, iC) in categories"
                         :key="iC"
-                        class="w-full pb-4 pt-4 lg:pb-20"
+                        class="w-full pb-4 pt-12 lg:pt-4 lg:pb-20"
                         :id="'portfolio_category_' + c.id"
                         ref="portfolioCategoriesRef"
                     >
-                        <div class="flex w-full px-4 pb-2 lg:-mb-9 lg:justify-end lg:px-0 lg:pb-0">
+                        <div class="hidden w-full px-4 pb-2 lg:-mb-9 lg:flex lg:justify-end lg:px-0 lg:pb-0">
                             <div
                                 class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600 lg:bg-gradient-to-b lg:from-purple_giorgia-500 lg:from-62 lg:to-purple_giorgia-300 lg:to-62 lg:bg-clip-text lg:text-8xl lg:text-transparent"
                             >
@@ -217,10 +297,11 @@
 <script setup lang="ts">
 import SectionHeader from "@/components/SectionHeader.vue";
 import { useThemes } from "@/store";
-import { Ref, onMounted, onUnmounted, ref } from "vue";
+import { Ref, computed, onMounted, onUnmounted, ref } from "vue";
 import GiorgiaModal from "@/components/GiorgiaModal.vue";
 import { watchDebounced } from "@vueuse/core";
 import { useElementVisibility } from "@vueuse/core";
+import { Dialog, DialogPanel } from "@headlessui/vue";
 
 export type PortfolioSection = {
     title: string;
@@ -260,6 +341,7 @@ onMounted(() => {
     firstScriptTag!.parentNode!.insertBefore(tag, firstScriptTag);
 });
 let player: YT.Player | null = null;
+const showCategoryList = ref(false);
 
 const themesStore = useThemes();
 
@@ -297,8 +379,8 @@ const categories: Ref<{ id: CategoryType; description: string; isActive: boolean
     { id: CategoryType.set_design, description: "Set design", isActive: false },
     { id: CategoryType.photography, description: "Fotografia", isActive: false },
     { id: CategoryType.video, description: "Video", isActive: false },
+    { id: CategoryType.photoediting, description: "Photo editing", isActive: false },
 ]);
-
 
 // { id: CategoryType.photoediting, description: "Photo editing", isActive: false },
 
@@ -473,6 +555,28 @@ const sections: PortfolioSection[] = [
         isButton: true,
         youtubeId: "RNSKAoiSGQM",
     },
+    {
+        title: "Photo Editing 1",
+        category: CategoryType.photoediting,
+        description: photoEditing1Description,
+        tags: ["photo editing", "fotomanipolazione"],
+        programs: [{ image: "photoshop", description: "Photoshop" }],
+        image: "photo_editing_1_resized.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9;",
+        isButton: false,
+    },
+    {
+        title: "Photo Editing 2",
+        category: CategoryType.photoediting,
+        description: photoEditing2Description,
+        tags: ["photo editing", "fotomanipolazione"],
+        programs: [{ image: "photoshop", description: "Photoshop" }],
+        image: "photo_editing_2_resized.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9;",
+        isButton: false,
+    },
 ];
 
 // {
@@ -520,10 +624,21 @@ const sections: PortfolioSection[] = [
 //         isButton: false,
 //     },
 
+const curCategory = computed(() => {
+    const cur = categories.value.find((s) => s.isActive === true);
+    if (cur) {
+        return cur;
+    } else {
+        return categories.value[0];
+    }
+});
+
 async function scrollToCategory(categoryId: number) {
     const categoryElement = document.getElementById("portfolio_category_" + categoryId);
     if (categoryElement) {
-        categoryElement.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+            categoryElement.scrollIntoView({ behavior: "smooth" });
+        }, 10);
     }
 }
 
@@ -563,15 +678,16 @@ window.addEventListener("scroll", updateScrollPosition);
 const scrollPosition = ref(0);
 function updateScrollPosition() {
     scrollPosition.value = window.scrollY;
+    checkCategoryActive();
 }
 
-watchDebounced(
-    () => scrollPosition.value,
-    () => {
-        checkCategoryActive();
-    },
-    { debounce: 100 }
-);
+// watchDebounced(
+//     () => scrollPosition.value,
+//     () => {
+//         checkCategoryActive();
+//     },
+//     { debounce: 100 }
+// );
 
 function isCategoryActive(categoryIndex: number): boolean {
     if (
@@ -597,6 +713,10 @@ function checkCategoryActive() {
             categories.value[index].isActive = false;
         }
     });
+}
+
+function toggleCategoryList() {
+    showCategoryList.value = !showCategoryList.value;
 }
 </script>
 

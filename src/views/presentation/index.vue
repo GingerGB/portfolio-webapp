@@ -61,9 +61,9 @@
     <!-- ARROW TO SCROLL TO TOP -->
     <button
         type="button"
-        class="fixed bottom-6 right-6 z-50 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-purple_giorgia-600 transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700"
+        class="fixed bottom-6 right-6 z-20 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-purple_giorgia-600 transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 shadow-xl"
         @click="scrollToTop"
-        v-if="!themesStore.isMD && !themesStore.isSM && scrollOverFirstScreen"
+        v-if="scrollOverFirstScreen"
     >
         <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -129,7 +129,9 @@ window.addEventListener("scroll", () => {
 });
 
 function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+    }, 10);
 }
 
 const scrollToSection = (sectionId: string) => {
@@ -140,7 +142,9 @@ const scrollToSection = (sectionId: string) => {
         if (!themesStore.isMD && !themesStore.isSM) {
             y = y + 90;
         }
-        window.scrollTo({ top: y, behavior: "smooth" });
+        setTimeout(() => {
+            window.scrollTo({ top: y, behavior: "smooth" });
+        }, 10);
     }
 };
 </script>
