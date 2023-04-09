@@ -43,8 +43,14 @@ DA FARE
     +menu sotto categorie profilo: non serve, sottomenu già presente nella categoria per mobiel e non
     +lazy loading immagini
     +rimpicciolire riquadro contact me
-    +tasto per andare su
     +rifare menu mobile che fa schuifo
+    +freccia per andare su
+    +selezione categorie portfolio da mobile
+    +corretto scroll da safari
 
-    -sistemare navigatore categorie portfolio
-    -farlo per mobile? fisso in testa che scende a mò di dropdown
+    -sistemare bug scroll su menu selezione categorie portofolio da mobile
+    -la prima volta, se clicco qualsiasi categoria, l'altezza dello scroll non corrisponde
+    -safari desktop/ipad landscape, sezione portfolio, rotta
+    -loader immagini
+
+
