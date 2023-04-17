@@ -69,7 +69,7 @@
                     <button
                         @click="toggleCategoryList"
                         type="button"
-                        class="sticky top-0 z-10 flex lg:hidden h-16 w-full items-center border-b border-green_giorgia-200 bg-green_giorgia-50 px-4 outline-none transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100"
+                        class="sticky top-0 z-10 flex h-16 w-full items-center border-b border-green_giorgia-200 bg-green_giorgia-50 px-4 outline-none transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100 lg:hidden"
                     >
                         <div class="flex flex-grow">
                             <div
@@ -103,7 +103,7 @@
                     <div
                         v-for="(c, iC) in categories"
                         :key="iC"
-                        class="w-full pb-4 pt-12 lg:pt-4 lg:pb-20"
+                        class="w-full pb-4 pt-12 lg:pb-20 lg:pt-4"
                         :id="'portfolio_category_' + c.id"
                         ref="portfolioCategoriesRef"
                     >
@@ -153,7 +153,7 @@
                                             <img
                                                 loading="lazy"
                                                 :src="`/src/assets/images/portfolio/${s.image}`"
-                                                class="w-full bg-purple_giorgia-500 object-cover"
+                                                class="bg-purple_giorgia-500 object-cover"
                                                 :class="s.imageClasses"
                                                 :style="s.imageStyles"
                                             />
@@ -167,11 +167,12 @@
                                     >
                                         {{ s.title }}
                                     </div>
-                                    <div class="flex flex-wrap items-center space-x-2 lg:pb-6">
+                                    <div class="flex flex-wrap items-center space-x-2 lg:pb-4">
+                                        <!-- TAGS -->
                                         <div
                                             v-for="t in s.tags"
                                             :key="t"
-                                            class="mt-2 bg-green_giorgia-200 px-3 py-2 text-xs font-medium uppercase tracking-wider text-green_giorgia-700 lg:mt-0"
+                                            class="mt-2 bg-green_giorgia-200 px-3 py-2 text-xs font-medium uppercase tracking-wider text-green_giorgia-700 lg:mb-2 lg:mt-0"
                                         >
                                             {{ t }}
                                         </div>
@@ -180,7 +181,7 @@
                                     <!-- IMAGE MOBILE -->
                                     <div
                                         v-if="themesStore.isMD || themesStore.isSM"
-                                        class="mx-auto mb-10 mt-4 flex flex-shrink-0"
+                                        class="mx-auto mb-10 mt-4 w-full"
                                     >
                                         <div class="relative">
                                             <div class="flex space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
@@ -259,7 +260,7 @@
                                             <img
                                                 loading="lazy"
                                                 :src="`/src/assets/images/portfolio/${s.image}`"
-                                                class="w-full bg-purple_giorgia-500 object-cover"
+                                                class="bg-purple_giorgia-500 object-cover"
                                                 :class="s.imageClasses"
                                                 :style="s.imageStyles"
                                             />

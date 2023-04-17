@@ -47,10 +47,9 @@ DA FARE
     +freccia per andare su
     +selezione categorie portfolio da mobile
     +corretto scroll da safari
+    +safari desktop/ipad landscape, sezione portfolio, rotta
+    +sistemare bug scroll su menu selezione categorie portofolio da mobile: la prima volta, se clicco qualsiasi categoria, l'altezza dello scroll non corrisponde
 
-    -sistemare bug scroll su menu selezione categorie portofolio da mobile
-    -la prima volta, se clicco qualsiasi categoria, l'altezza dello scroll non corrisponde
-    -safari desktop/ipad landscape, sezione portfolio, rotta
     -loader immagini
 
 
