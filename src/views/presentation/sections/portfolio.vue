@@ -489,7 +489,7 @@ const sections: PortfolioSection[] = [
             { image: "photoshop", description: "Photoshop" },
             { image: "indesign", description: "InDesign" },
         ],
-        image: "urban_memories_resized.png",
+        image: "urban_memories_resized.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9; object-position: 0 15%;",
         isButton: false,
