@@ -370,9 +370,15 @@ const scandaloVsDanielMasterDescription = `Video di un match di wrestling che ve
 vera VHS degli anni Ottanta. A precedere il montaggio dell’incontro, un’opening volutamente kitsch che si ispira a quelle dei programmi del decennio.`;
 const theMagicianDescription = `Sonorizzazione del film senza sonoro <i>The Magician</i> del 1900, dall’archivio Edison. Fa parte di un progetto di tre sonorizzazioni
 proiettate alla White Night dell’Accademia di Belle Arti di Bologna del 2017.`;
-const photoEditing1Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
-const photoEditing2Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
-const photoEditing3Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
+const bewarethesirenDescription = `Composizione a tema fantasy di una scena in notturna particolarmente incentrata sull’effetto “sott’acqua”.
+Utilizzo di maschere, pennelli personalizzati, tracciati, sfumature, filtri avanzati, livelli di regolazione, modifica parametri dei metodi di fusione e degli stili di livello,
+uso dei filtri di Camera Raw, alterazione marionetta (puppet warp) per il movimento di alcune parti dei personaggi, vari effetti di luce e riflessi.
+Luci, ombre ed effetti di tridimensionalità sono stati rifiniti con la tavoletta grafica.`;
+const midnightdreamingDescription = `Composizione a tema fantasy di una scena in notturna che mostra un portale magico che apre verso la strada per un castello.
+Particolarmente usati gli strumenti di distorsione e prospettiva, per seguire le linee prospettiche. Utilizzo di maschere, pennelli personalizzati, tracciati, sfumature,
+filtri avanzati, livelli di regolazione, modifica parametri dei metodi di fusione e degli stili di livello, uso dei filtri di Camera Raw, utilizzo di sfocature e distorsioni.
+Luci, ombre sono stati rifiniti con la tavoletta grafica.`;
+const photomanipulationCollectionDescription = `Esempi di varie fotomanipolazioni per creare bozzetti di progetti scenografici. ` ;
 const photoEditing4Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
 
 const portfolioCategoriesRef = ref([]);
@@ -557,40 +563,44 @@ const sections: PortfolioSection[] = [
         youtubeId: "RNSKAoiSGQM",
     },
     {
-        title: "Photo Editing 1",
+        title: "Beware the siren",
         category: CategoryType.photoediting,
-        description: photoEditing1Description,
+        description: bewarethesirenDescription,
         tags: ["photo editing", "fotomanipolazione"],
         programs: [{ image: "photoshop", description: "Photoshop" }],
-        image: "photo_editing_1_resized.jpg",
+        image: "beware_the_siren_resized.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9;",
         isButton: false,
     },
     {
-        title: "Photo Editing 2",
+        title: "Midnight dreaming",
         category: CategoryType.photoediting,
-        description: photoEditing2Description,
+        description: midnightdreamingDescription,
         tags: ["photo editing", "fotomanipolazione"],
         programs: [{ image: "photoshop", description: "Photoshop" }],
-        image: "photo_editing_2_resized.jpg",
+        image: "midnight_dreaming_resized.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9;",
         isButton: false,
     },
+
+    {
+        title: "Raccolta fotomanipolazioni",
+        category: CategoryType.photoediting,
+        description: photomanipulationCollectionDescription,
+        tags: ["photo editing", "fotomanipolazione"],
+        programs: [{ image: "photoshop", description: "Photoshop" }],
+        image: "bozzetto_resized.jpg",
+        imageClasses: "lg:h-72",
+        imageStyles: "aspect-ratio: 16/9;",
+        isButton: false,
+        url: "https://drive.google.com/file/d/1oP8zBLqGs0REZ1bqqbeiZkU84_Lq2Kic/view?usp=share_link"
+    },
+
 ];
 
-// {
-//         title: "Photo Editing 1",
-//         category: CategoryType.photoediting,
-//         description: photoEditing1Description,
-//         tags: ["photo editing", "fotomanipolazione"],
-//         programs: [{ image: "photoshop", description: "Photoshop" }],
-//         image: "photo_editing_1_resized.jpg",
-//         imageClasses: "lg:h-72",
-//         imageStyles: "aspect-ratio: 16/9;",
-//         isButton: false,
-//     },
+
 //     {
 //         title: "Photo Editing 2",
 //         category: CategoryType.photoediting,
