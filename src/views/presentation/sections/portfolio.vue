@@ -14,6 +14,31 @@
             </div>
         </GiorgiaModal>
 
+        <!-- PHOTO VIEWER -->
+        <viewer
+            @inited="onViewerInited"
+            class="viewer"
+            ref="viewer"
+            :options="{
+                movable: false,
+                toolbar: false,
+                navbar: false,
+                title: false,
+                tooltip: false,
+                zoomable: false,
+                minZoomRatio: 0.45,
+            }"
+        >
+            <template>
+                <img :src="`/src/assets/images/portfolio/${curImage}`" />
+            </template>
+        </viewer>
+
+        <!-- directive -->
+        <!-- <div v-if="curImage && showImagePlayer" class="images" v-viewer>
+            <img :src="`/src/assets/images/portfolio/${curImage}`" />
+        </div> -->
+
         <SectionHeader initial="P" text="Portfolio" :spaced-bottom="true" />
 
         <!-- MOBILE CATEGORY SELECTION -->
@@ -63,25 +88,26 @@
         </Dialog>
 
         <div class="flex w-full flex-col bg-green_giorgia-50 pt-12 lg:pt-20">
-            <div class="mx-auto flex max-w-7xl space-y-10 lg:px-8">
+            <div class="mx-auto flex w-full space-y-10 md:max-w-2xla xl:max-w-7xl md:px-8 xl:px-8">
                 <div class="flex flex-grow flex-col">
                     <!-- MOBILE CATEGORY LIST BUTTON -->
                     <button
                         @click="toggleCategoryList"
                         type="button"
-                        class="sticky top-0 z-10 flex h-16 w-full items-center border-b border-green_giorgia-200 bg-green_giorgia-50 px-4 outline-none transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100 lg:hidden"
+                        class="w-fulla sticky top-0 mx-4 flex h-16 items-center border-b border-green_giorgia-200 bg-green_giorgia-50 px-4 outline-none transition-colors duration-150 ease-in-out hover:bg-green_giorgia-100 lg:hidden"
+                        style="z-index: 8"
                     >
-                        <div class="flex flex-grow">
+                        <div class="flex flex-grow items-center">
                             <div
-                                class="pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600"
+                                class="pb-1 pr-4 font-serif text-4xl font-bold uppercase tracking-widest text-purple_giorgia-600"
                             >
-                                {{ categories.findIndex((s) => s.id === curCategory?.id) + 1 }}
+                                {{ categories.findIndex((s) => s.id === curMobileCategory?.id) + 1 }}
                             </div>
                             <div
                                 class="font-serif text-4xl font-bold uppercase tracking-widest text-green_giorgia-600"
-                                style="font-size: 33px"
+                                style="font-size: 28px"
                             >
-                                {{ curCategory?.description }}
+                                {{ curMobileCategory?.description }}
                             </div>
                         </div>
                         <div class="flex h-full items-center">
@@ -179,10 +205,7 @@
                                     </div>
 
                                     <!-- IMAGE MOBILE -->
-                                    <div
-                                        v-if="themesStore.isMD || themesStore.isSM"
-                                        class="mx-auto mb-10 mt-4 w-full"
-                                    >
+                                    <div v-if="themesStore.isMD || themesStore.isSM" class="mx-auto mb-10 mt-4 w-full">
                                         <div class="relative">
                                             <div class="flex space-x-3 border-t border-purple_giorgia-400 pb-5 pt-5">
                                                 <div v-for="(p, iP) in s.programs" class="">
@@ -213,14 +236,22 @@
                                     <!-- DESCRIPTION -->
                                     <div
                                         v-html="s.description"
-                                        class="text-sm font-light text-green_giorgia-700 xl:text-base"
+                                        class="text-sm font-light leading-7 text-green_giorgia-700 xl:text-base"
                                     ></div>
                                     <!-- BUTTON -->
                                     <div class="mt-8 flex items-center gap-x-6">
                                         <button
                                             v-if="s.isButton"
                                             type="button"
-                                            @click="onButtonClick(s)"
+                                            @click="onButtonClick(s, 'video')"
+                                            class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 focus:bg-purple_giorgia-800 focus:outline-none lg:w-auto lg:py-3 lg:text-left"
+                                        >
+                                            Visualizza progetto
+                                        </button>
+                                        <button
+                                            v-if="!s.isButton && s.imageHigh"
+                                            type="button"
+                                            @click="onButtonClick(s, 'image')"
                                             class="w-full bg-purple_giorgia-600 px-6 py-5 text-center text-sm font-semibold text-purple_giorgia-50 shadow-sm transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 focus:bg-purple_giorgia-800 focus:outline-none lg:w-auto lg:py-3 lg:text-left"
                                         >
                                             Visualizza progetto
@@ -303,6 +334,8 @@ import GiorgiaModal from "@/components/GiorgiaModal.vue";
 import { watchDebounced } from "@vueuse/core";
 import { useElementVisibility } from "@vueuse/core";
 import { Dialog, DialogPanel } from "@headlessui/vue";
+import { component as Viewer } from "v-viewer";
+import "viewerjs/dist/viewer.css";
 
 export type PortfolioSection = {
     title: string;
@@ -316,6 +349,7 @@ export type PortfolioSection = {
     isButton: boolean;
     url?: string;
     youtubeId?: string;
+    imageHigh?: string;
 };
 
 const enum CategoryType {
@@ -342,7 +376,10 @@ onMounted(() => {
     firstScriptTag!.parentNode!.insertBefore(tag, firstScriptTag);
 });
 let player: YT.Player | null = null;
+const vueViewer: Ref<any | null> = ref(null);
 const showCategoryList = ref(false);
+const showImagePlayer = ref(false);
+const curImage: Ref<any | null> = ref(null);
 
 const themesStore = useThemes();
 
@@ -378,18 +415,16 @@ const midnightdreamingDescription = `Composizione a tema fantasy di una scena in
 Particolarmente usati gli strumenti di distorsione e prospettiva, per seguire le linee prospettiche. Utilizzo di maschere, pennelli personalizzati, tracciati, sfumature,
 filtri avanzati, livelli di regolazione, modifica parametri dei metodi di fusione e degli stili di livello, uso dei filtri di Camera Raw, utilizzo di sfocature e distorsioni.
 Luci, ombre sono stati rifiniti con la tavoletta grafica.`;
-const photomanipulationCollectionDescription = `Esempi di varie fotomanipolazioni per creare bozzetti di progetti scenografici. ` ;
+const photomanipulationCollectionDescription = `Esempi di varie fotomanipolazioni per creare bozzetti di progetti scenografici. `;
 const photoEditing4Description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel tincidunt lacinia, nunc nisl aliquam.`;
 
 const portfolioCategoriesRef = ref([]);
-const categories: Ref<{ id: CategoryType; description: string; isActive: boolean }[]> = ref([
-    { id: CategoryType.set_design, description: "Set design", isActive: false },
-    { id: CategoryType.photography, description: "Fotografia", isActive: false },
-    { id: CategoryType.video, description: "Video", isActive: false },
-    { id: CategoryType.photoediting, description: "Photo editing", isActive: false },
+const categories: Ref<{ id: CategoryType; description: string; isActive: boolean; isMobileActive: boolean }[]> = ref([
+    { id: CategoryType.set_design, description: "Set design", isActive: false, isMobileActive: false },
+    { id: CategoryType.photography, description: "Fotografia", isActive: false, isMobileActive: false },
+    { id: CategoryType.video, description: "Video", isActive: false, isMobileActive: false },
+    { id: CategoryType.photoediting, description: "Photo editing", isActive: false, isMobileActive: false },
 ]);
-
-// { id: CategoryType.photoediting, description: "Photo editing", isActive: false },
 
 const sections: PortfolioSection[] = [
     {
@@ -569,6 +604,7 @@ const sections: PortfolioSection[] = [
         tags: ["photo editing", "fotomanipolazione"],
         programs: [{ image: "photoshop", description: "Photoshop" }],
         image: "beware_the_siren_resized.jpg",
+        imageHigh: "beware_the_siren_high.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9;",
         isButton: false,
@@ -580,6 +616,7 @@ const sections: PortfolioSection[] = [
         tags: ["photo editing", "fotomanipolazione"],
         programs: [{ image: "photoshop", description: "Photoshop" }],
         image: "midnight_dreaming_resized.jpg",
+        imageHigh: "midnightdreaming_high.jpg",
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9;",
         isButton: false,
@@ -595,11 +632,9 @@ const sections: PortfolioSection[] = [
         imageClasses: "lg:h-72",
         imageStyles: "aspect-ratio: 16/9;",
         isButton: false,
-        url: "https://drive.google.com/file/d/1oP8zBLqGs0REZ1bqqbeiZkU84_Lq2Kic/view?usp=share_link"
+        url: "https://drive.google.com/file/d/1oP8zBLqGs0REZ1bqqbeiZkU84_Lq2Kic/view?usp=share_link",
     },
-
 ];
-
 
 //     {
 //         title: "Photo Editing 2",
@@ -643,6 +678,14 @@ const curCategory = computed(() => {
         return categories.value[0];
     }
 });
+const curMobileCategory = computed(() => {
+    const cur = categories.value.find((s) => s.isMobileActive === true);
+    if (cur) {
+        return cur;
+    } else {
+        return categories.value[0];
+    }
+});
 
 async function scrollToCategory(categoryId: number) {
     const categoryElement = document.getElementById("portfolio_category_" + categoryId);
@@ -653,19 +696,11 @@ async function scrollToCategory(categoryId: number) {
     }
 }
 
-function onButtonClick(curSection: PortfolioSection) {
-    switch (curSection.title) {
-        case "There’s no place like home":
-            openYoutube(curSection.youtubeId!);
-            break;
-        case "Scandalo! vs Daniel Masters":
-            openYoutube(curSection.youtubeId!);
-            break;
-        case "The Magician":
-            openYoutube(curSection.youtubeId!);
-            break;
-        default:
-            break;
+function onButtonClick(curSection: PortfolioSection, mode: "video" | "image") {
+    if (mode === "video") {
+        openYoutube(curSection.youtubeId!);
+    } else {
+        openImage(curSection.imageHigh!);
     }
 }
 
@@ -683,6 +718,11 @@ function openYoutube(videoId: string) {
         // if mobile try to open youtube app
         window.open("vnd.youtube://" + videoId, "_blank");
     }
+}
+function openImage(imageId: string) {
+    curImage.value = imageId;
+    // showImagePlayer.value = true;
+    openImageViewer();
 }
 
 window.addEventListener("scroll", updateScrollPosition);
@@ -712,6 +752,19 @@ function isCategoryActive(categoryIndex: number): boolean {
         return false;
     }
 }
+function isCategoryMobileActive(categoryIndex: number): boolean {
+    if (
+        portfolioCategoriesRef.value &&
+        portfolioCategoriesRef.value.length > 0 &&
+        portfolioCategoriesRef.value[categoryIndex]
+    ) {
+        // instead to check if visible, check if section is near to the top of the screen
+        const sectionTop = (portfolioCategoriesRef.value[categoryIndex] as any).getBoundingClientRect().top;
+        return sectionTop < 100;
+    } else {
+        return false;
+    }
+}
 
 function checkCategoryActive() {
     categories.value.forEach((category, index) => {
@@ -723,12 +776,46 @@ function checkCategoryActive() {
         } else {
             categories.value[index].isActive = false;
         }
+
+        if (isCategoryMobileActive(index)) {
+            categories.value[index].isMobileActive = true;
+            for (let i = 0; i < index; i++) {
+                categories.value[i].isMobileActive = false;
+            }
+        } else {
+            categories.value[index].isMobileActive = false;
+        }
     });
 }
 
 function toggleCategoryList() {
     showCategoryList.value = !showCategoryList.value;
 }
+
+function openImageViewer() {
+    vueViewer.value.show();
+}
+function onViewerInited(viewer: any) {
+    vueViewer.value = viewer;
+}
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+.viewer-button {
+    right: 24px;
+    top: 24px;
+    height: 56px;
+    width: 56px;
+    background-color: rgba(31, 41, 55);
+    border-radius: 99px;
+}
+.viewer-button::before {
+    bottom: 18.5px;
+    left: 18.5px;
+    scale: 1.1;
+}
+.viewer-button:focus,
+.viewer-button:hover {
+    background-color: rgba(17, 24, 39);
+}
+</style>

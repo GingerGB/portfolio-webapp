@@ -61,7 +61,8 @@
     <!-- ARROW TO SCROLL TO TOP -->
     <button
         type="button"
-        class="fixed bottom-6 right-6 z-20 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-purple_giorgia-600 transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 shadow-xl"
+        class="fixed bottom-6 right-6 flex h-14 w-14 cursor-pointer items-center justify-center rounded-full bg-purple_giorgia-600 transition-colors duration-150 ease-in-out hover:bg-purple_giorgia-700 shadow-xl"
+        style="z-index: 9;"
         @click="scrollToTop"
         v-if="scrollOverFirstScreen"
     >
@@ -94,9 +95,9 @@
         <contactMe />
     </section>
 
-    <section class="relative">
+    <!-- <section class="relative">
         <footers />
-    </section>
+    </section> -->
 </template>
 <script setup lang="ts">
 import { ref } from "vue";
