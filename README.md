@@ -24,7 +24,7 @@ COMANDI
         git push
     per creare nuovo tag / aggiornare - pubblicare github pages, dopo version mettere "patch", "minor", o "major"
         npm version patch
-        git push --follow -tag
+        git push --follow-tag
 
 
 ------------------------------------------------------------------------------------------------------------------------
