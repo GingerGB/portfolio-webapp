@@ -1,8 +1,8 @@
 {
-    "name": "@GingerGB/portfolio-webapp",
+    "name": "@giorgiaboscolo/portfolio-webapp",
     "version": "1.0.0",
     "publishConfig": {
-        "registry": "https://npm.pkg.github.com/GingerGB"
+        "registry": "https://npm.pkg.github.com/giorgiaboscolo"
     },
     "private": false,
     "scripts": {
