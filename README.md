@@ -52,4 +52,3 @@ DA FARE
 
     -loader immagini
 
-SEI UNO STRONZO
