@@ -30,13 +30,13 @@
             }"
         >
             <template>
-                <img :src="`/src/assets/images/portfolio/${curImage}`" />
+                <img :src="`/images/portfolio/${curImage}`" />
             </template>
         </viewer>
 
         <!-- directive -->
         <!-- <div v-if="curImage && showImagePlayer" class="images" v-viewer>
-            <img :src="`/src/assets/images/portfolio/${curImage}`" />
+            <img :src="`/images/portfolio/${curImage}`" />
         </div> -->
 
         <SectionHeader initial="P" text="Portfolio" :spaced-bottom="true" />
@@ -165,7 +165,7 @@
                                             <div v-for="(p, iP) in s.programs" class="">
                                                 <img
                                                     loading="lazy"
-                                                    :src="`/src/assets/images/programs/${p.image}.svg`"
+                                                    :src="`/images/programs/${p.image}.svg`"
                                                     class="h-8 w-6"
                                                     v-fbr-tooltip="p.description"
                                                 />
@@ -178,7 +178,7 @@
                                             ></div>
                                             <img
                                                 loading="lazy"
-                                                :src="`/src/assets/images/portfolio/${s.image}`"
+                                                :src="`/images/portfolio/${s.image}`"
                                                 class="bg-purple_giorgia-500 object-cover"
                                                 :class="s.imageClasses"
                                                 :style="s.imageStyles"
@@ -211,7 +211,7 @@
                                                 <div v-for="(p, iP) in s.programs" class="">
                                                     <img
                                                         loading="lazy"
-                                                        :src="`/src/assets/images/programs/${p.image}.svg`"
+                                                        :src="`/images/programs/${p.image}.svg`"
                                                         class="h-8 w-6"
                                                         v-fbr-tooltip="p.description"
                                                     />
@@ -224,7 +224,7 @@
                                                 ></div>
                                                 <img
                                                     loading="lazy"
-                                                    :src="`/src/assets/images/portfolio/${s.image}`"
+                                                    :src="`/images/portfolio/${s.image}`"
                                                     class="w-full bg-purple_giorgia-500 object-cover"
                                                     :class="s.imageClasses"
                                                     :style="s.imageStyles"
@@ -277,7 +277,7 @@
                                             <div v-for="(p, iP) in s.programs" class="">
                                                 <img
                                                     loading="lazy"
-                                                    :src="`/src/assets/images/programs/${p.image}.svg`"
+                                                    :src="`/images/programs/${p.image}.svg`"
                                                     class="h-6 w-6"
                                                     v-fbr-tooltip="p.description"
                                                 />
@@ -290,7 +290,7 @@
                                             ></div>
                                             <img
                                                 loading="lazy"
-                                                :src="`/src/assets/images/portfolio/${s.image}`"
+                                                :src="`/images/portfolio/${s.image}`"
                                                 class="bg-purple_giorgia-500 object-cover"
                                                 :class="s.imageClasses"
                                                 :style="s.imageStyles"

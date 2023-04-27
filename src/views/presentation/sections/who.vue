@@ -40,8 +40,8 @@
 
                 <!-- IMAGE -->
                 <div class="bg-green_giorgia-100 lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
-                    <img class="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full"
-                        src="@/assets/images/splash_image.jpg" />
+                    <img class="aspect-[3/2] object-cover lg:aspect-auto lg:h-full lg:w-full bg-green_giorgia-700"
+                        src="/images/splash_image.jpg" />
                 </div>
             </div>
         </div>
