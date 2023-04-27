@@ -12,13 +12,19 @@ COMANDI
         npm i
     per aprire il progetto
         npm run dev
+
+    per prendere modifiche
+        git fetch origin
+        git pull
+
+
     per rilasciare modifiche
         git add .
         git commit -m "nome rilascio"
         git push
-    per prendere modifiche
-        git fetch origin
-        git pull
+    per creare nuovo tag / aggiornare - pubblicare github pages, dopo version mettere "patch", "minor", o "major"
+        npm version patch
+        git push --follow tag
 
 
 ------------------------------------------------------------------------------------------------------------------------
