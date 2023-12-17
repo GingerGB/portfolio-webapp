@@ -510,7 +510,7 @@ const sections: PortfolioSection[] = [
         isButton: false,
         url: "https://drive.google.com/file/d/1W0UfgIFQtO-WcYMTG3kAsBNC2-kdjfUS/view?usp=share_link",
     },
-     {
+    {
         title: "Shooting di famiglia",
         category: CategoryType.photography,
         description: familyShootingDescription,
